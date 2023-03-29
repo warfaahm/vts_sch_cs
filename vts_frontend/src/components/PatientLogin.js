@@ -22,11 +22,11 @@ function PatientLogin() {
                         <form method="POST">
                             <div className="my-4 w-full">
                                 <label htmlFor="email" className="label_1">Email</label>
-                                <input type="email" id="email" name="email" className="input_1"/>
+                                <input type="email" id="email" name="email" className="input_1" required/>
                             </div>
                             <div>
                                 <label  htmlFor="password" className="label_1">Password</label>
-                                <input type="password" id="password" name="password" className="input_1"/>
+                                <input type="password" id="password" name="password" className="input_1" required/>
                             </div>
                             <div>
                                 <button type="submit" className="login-btn">Login</button>
