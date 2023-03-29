@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .input_1{
+        @apply bg-white border-2 border-slate-300 block rounded-lg focus:ring-0 focus:outline-none focus:ring-blue-500 focus:border-blue-600 my-1 py-1.5 px-4 w-full invalid:text-red-500 invalid:border-red-500 focus:invalid:border-red-500 focus:invalid:ring-red-500;
+    }
+    .label_1{
+        @apply block font-medium text-slate-700 text-sm;
+    }
+    .login-btn{
+        @apply bg-blue-600 px-6 py-2 rounded-lg text-white hover:bg-blue-800 w-full mt-4;
+    }
+    .create-btn{
+        @apply bg-blue-600 hover:bg-blue-800 py-2 px-3 rounded-lg text-white;
+    }
+    .radio-form{
+        @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2;
+    }
+}
