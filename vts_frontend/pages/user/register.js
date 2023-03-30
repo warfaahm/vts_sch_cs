@@ -8,8 +8,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {useState} from "react";
 import axios from "axios";
 import moment from "moment";
+import { useRouter } from 'next/router';
+import {router} from "next/client";
 
 export default function Register(){
+
+    const router = useRouter();
 
     const [first_name, setFName] = useState('');
     const [last_name, setLName] = useState('');
@@ -41,6 +45,7 @@ export default function Register(){
                 password_confirmation,
             });
             console.log(response.data);
+            router.push('/user/login');
         } catch (error) {
             console.error(error);
         }
