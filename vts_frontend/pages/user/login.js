@@ -7,6 +7,17 @@ import {useState} from "react";
 
 export default function PatientLogin(){
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
     return(
         <>
             <Head>
@@ -28,10 +39,10 @@ export default function PatientLogin(){
                             <h2 className="font-light text-2xl my-2">Login to your account</h2>
                             <form method="POST">
                                 <div className="w-full my-5">
-                                    <TextField label="Email" type="email" id="email" name="email"  className="w-full" required/>
+                                    <TextField label="Email" type="email" id="email" name="email"  className="w-full" onChange={handleEmailChange} required/>
                                 </div>
                                 <div className="w-full my-5">
-                                    <TextField label="Password" type="password" id="password" name="password" className="w-full" required/>
+                                    <TextField label="Password" type="password" id="password" name="password" className="w-full" onChange={handlePasswordChange} required/>
                                 </div>
                                 <div>
                                     <button className="login-btn" type="submit">Login</button>
