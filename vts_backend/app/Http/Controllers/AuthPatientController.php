@@ -38,6 +38,7 @@ class AuthPatientController extends Controller
             'allergy' => $request->allergy,
         ]);
         return $this->success([
+            'message' => 'Registration successful',
             'user' => $user,
             'patient' => $patient,
             // 'token' => $user->createToken('API Token of ' . $user->first_name)->plainTextToken,

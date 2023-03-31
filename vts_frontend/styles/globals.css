@@ -5,3 +5,11 @@
 .login-btn{
     @apply bg-blue-600 px-6 py-3 rounded-lg text-white hover:bg-blue-800 w-full mt-2 mb-6;
 }
+
+.error-msg{
+    @apply text-red-700 bg-red-200 border border-red-700 rounded-lg p-3 mb-3;
+}
+
+.success-msg{
+    @apply text-green-700 bg-green-200 border border-green-700 rounded-lg p-3 mb-3;
+}

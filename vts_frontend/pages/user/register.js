@@ -9,7 +9,7 @@ import {useState} from "react";
 import axios from "axios";
 import moment from "moment";
 import { useRouter } from 'next/router';
-import {router} from "next/client";
+
 
 export default function Register(){
 
@@ -25,6 +25,8 @@ export default function Register(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password_confirmation, setCPassword] = useState('');
+    const [error, setError] = useState(null);
+    const [data, setData] = useState(null);
 
     const dob1 = new Date(dob);
     const formattedDob = dob1.toLocaleDateString('en-US');
@@ -45,8 +47,13 @@ export default function Register(){
                 password_confirmation,
             });
             console.log(response.data);
-            router.push('/user/login');
+            setData(response.data);
+            setTimeout(()=>{
+                router.push('/user/login');
+            }, 2000);
+
         } catch (error) {
+            setError(error.response.data)
             console.error(error);
         }
     };
@@ -102,7 +109,7 @@ export default function Register(){
                     <div className="w-full max-w-md md:max-w-lg ">
                         <div className="flex justify-between">
                             <div className="relative flex items-center">
-                                <Image src="/images/logo.png" width="150" height="150" alt="logo" draggable="false"/>
+                                <Image src="/images/logo.png" width="150" height="150" alt="logo" draggable="false" priority/>
                             </div>
                             <div className="relative flex items-center">
                                 <Link href="/user/login" className="bg-blue-600 hover:bg-blue-800 py-2 px-3 rounded-lg text-white">Already have an account? Login</Link>
@@ -113,25 +120,25 @@ export default function Register(){
                             <form onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="w-full my-2">
-                                        <TextField label="First name" type="text" id="first_name" name="first_name"  className="w-full" onChange={handleFNameChange} required/>
+                                        <TextField label="First name" type="text" id="first_name" name="first_name" error={error?.errors?.first_name !== undefined} helperText={error?.errors?.first_name} className="w-full" onChange={handleFNameChange} required/>
                                     </div>
 
                                     <div className="w-full my-2">
-                                        <TextField label="Last name" type="text" id="last_name" name="last_name" className="w-full" onChange={handleLNameChange} required/>
+                                        <TextField label="Last name" type="text" id="last_name" name="last_name" error={error?.errors?.last_name !== undefined} helperText={error?.errors?.last_name} className="w-full" onChange={handleLNameChange} required/>
                                     </div>
 
                                     <div className="w-full my-2">
-                                        <TextField label="ID Number" type="text" id="id_no" name="id_no"  className="w-full" onChange={handleIDChange} required/>
+                                        <TextField label="ID Number" type="text" id="id_no" name="id_no" error={error?.errors?.nat_id_no !== undefined} helperText={error?.errors?.nat_id_no} className="w-full" onChange={handleIDChange} required/>
                                     </div>
 
                                     <div className="w-full my-2">
-                                        <TextField label="Phone number" type="text" id="phone_no" name="phone_no" className="w-full" onChange={handlePhoneChange} required/>
+                                        <TextField label="Phone number" type="text" id="phone_no" name="phone_no" error={error?.errors?.phone_no !== undefined} helperText={error?.errors?.phone_no} className="w-full" onChange={handlePhoneChange} required/>
                                     </div>
                                 </div>
                                 <div>
                                     <FormControl required>
                                         <FormLabel id="gender">Gender</FormLabel>
-                                        <RadioGroup name="gender" className="inline" onChange={handleGenderChange}>
+                                        <RadioGroup name="gender" className="inline" error={error?.errors?.gender !== undefined} helperText={error?.errors?.gender} onChange={handleGenderChange}>
                                             <FormControlLabel value="M" control={<Radio />} label="Male" />
                                             <FormControlLabel value="F" control={<Radio />} label="Female" />
                                         </RadioGroup>
@@ -140,26 +147,32 @@ export default function Register(){
 
                                 <div className="w-full my-5">
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker label="Date of Birth"  id="dob" name="dob" format="YYYY-MM-DD" className="w-full" onChange={handleDobChange} required/>
+                                        <DatePicker label="Date of Birth"  id="dob" name="dob" format="YYYY-MM-DD" error={error?.errors?.dob !== undefined} helperText={error?.errors?.dob} className="w-full" onChange={handleDobChange} required/>
                                     </LocalizationProvider>
                                 </div>
 
                                 <div className="w-full my-5">
-                                    <TextField label="Allergy" type="text" id="password" name="password" className="w-full" onChange={handleAllergyChange}/>
+                                    <TextField label="Allergy" type="text" id="allergy" name="allergy" error={error?.errors?.allergy !== undefined} helperText={error?.errors?.allergy} className="w-full" onChange={handleAllergyChange}/>
                                 </div>
 
                                 <div className="w-full my-5">
-                                    <TextField label="Email" type="email" id="email" name="email"  className="w-full" onChange={handleEmailChange} required/>
+                                    <TextField label="Email" type="email" id="email" name="email" error={error?.errors?.email !== undefined} helperText={error?.errors?.email} className="w-full" onChange={handleEmailChange} required/>
                                 </div>
 
                                 <div className="w-full my-5">
-                                    <TextField label="Password" type="password" id="password" name="password" className="w-full" onChange={handlePasswordChange} required/>
+                                    <TextField label="Password" type="password" id="password" name="password" error={error?.errors?.password !== undefined} helperText={error?.errors?.password} className="w-full" onChange={handlePasswordChange} required/>
                                 </div>
 
                                 <div className="w-full my-5">
-                                    <TextField label="Confirm Password" type="password" id="password_confirmation" name="password_confirmation" className="w-full" onChange={handleCPasswordChange} required/>
+                                    <TextField label="Confirm Password" type="password" id="password_confirmation" name="password_confirmation" error={error?.errors?.password_confirmation !== undefined} helperText={error?.errors?.password_confirmation} className="w-full" onChange={handleCPasswordChange} required/>
                                 </div>
 
+                                <div>
+                                    {error != null  && <h1 className="error-msg">Error: {error.message}</h1>}
+                                </div>
+                                <div>
+                                    {data != null  && <h1 className="success-msg">{data.data.message}</h1>}
+                                </div>
                                 <div>
                                     <button className="login-btn" type="submit">Register</button>
                                 </div>

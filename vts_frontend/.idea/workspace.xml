@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f84c8050-d1a4-4a3b-9928-c7a5e1ff3dc8" name="Changes" comment="first commit">
+      <change afterPath="$PROJECT_DIR$/pages/admin/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/provider/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/user/appointment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/user/child.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/user/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/user/record.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthPatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthPatientController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vts_backend_new" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend_new" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/provider/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/provider/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/user/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,20 +36,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/warfa/Desktop/CSC-227-Programming/vts_frontend/public",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/warfa/Desktop/CSC-227-Programming/vts_frontend/public&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\warfa\Desktop\CSC-227-Programming\vts_frontend\public" />
@@ -69,7 +81,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680182929383</updated>
-      <workItem from="1680182933390" duration="20490000" />
+      <workItem from="1680182933390" duration="21006000" />
+      <workItem from="1680238593419" duration="18307000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1680183054537</created>
@@ -92,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680213442748</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="first commit">
+      <created>1680213760403</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680213760403</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
