@@ -10,7 +10,7 @@ const SideBar = forwardRef(({ showNav }, ref) => {
     const router = useRouter();
 
     return (
-        <div ref={ref} className='fixed w-56 h-full bg-gray-50 shadow-sm'>
+        <div ref={ref} className='fixed w-56 h-full bg-gray-50 border-r-2 shadow-sm'>
             <div className='flex justify-center mt-6 mb-14'>
                 <picture>
                     <img
@@ -18,6 +18,8 @@ const SideBar = forwardRef(({ showNav }, ref) => {
                         src="/images/logo.png"
                         alt="company logo"
                         draggable='false'
+                        rel="preload"
+                        as='image'
                     />
                 </picture>
             </div>
@@ -82,6 +84,14 @@ const SideBar = forwardRef(({ showNav }, ref) => {
                         </div>
                     </div>
                 </Link>
+                <button className='pl-6 py-3 mx-5 mt-10 rounded text-center cursor-pointer mb-3 border border-blue-600 flex items-center transition-colors text-gray-700 hover:bg-blue-500 hover:text-white'>
+                    <div className='mr-2'>
+                        <ArrowRightOnRectangleIcon className='h-5 w-5'/>
+                    </div>
+                    <div>
+                        <p>Logout</p>
+                    </div>
+                </button>
             </div>
         </div>
     )

@@ -5,11 +5,13 @@ import Link from "next/link";
 import {useState} from "react";
 import axios from "axios";
 import {useRouter} from "next/router";
+import Cookies from 'universal-cookie';
 
 
 export default function PatientLogin(){
 
     const router = useRouter();
+    const cookies = new Cookies();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,11 +28,12 @@ export default function PatientLogin(){
             console.log(response.data);
             setData(response.data);
             const token = response.data.data.token;
-            localStorage.setItem('userToken', token);
+            window.localStorage.setItem('userToken', token );
+            cookies.set('userToken', token, { path: '/user' });
             console.log(token);
             router.push('/user/');
         } catch (error) {
-            setError(error.response.data)
+            setError(error.response)
             console.error(error);
         }
     };

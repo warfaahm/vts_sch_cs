@@ -8,10 +8,15 @@ export default function AppUser({ Component, pageProps }) {
     const isLoginPage = router.pathname === '/user/login';
     const isRegisterPage = router.pathname === '/user/register';
 
-    return (
-        <div>
-            {isUserRoute && !isLoginPage && !isRegisterPage && <Layout />}
-            <Component {...pageProps} role='user' />
-        </div>
-    )
+    if (isUserRoute && !isLoginPage && !isRegisterPage) {
+        return(
+            <Layout>
+                <Component {...pageProps} role='user' />
+            </Layout>
+        )
+    }
+    else
+    {
+        return <Component {...pageProps} role='user' />;
+    }
 }
