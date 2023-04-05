@@ -13,7 +13,7 @@ export default function PatientAppointment(){
             </Head>
             <main>
                 <PageHeader
-                    icon ={<CalendarIcon className='h-14 w-14 text-blue-800 shadow-lg m-3 p-2 rounded-sm'/>}
+                    icon ={<CalendarIcon className='page-header'/>}
                     title="Appointment"
                     description = "description"
                 />

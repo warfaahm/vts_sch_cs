@@ -14,7 +14,7 @@ export default function PatientDependent(){
             </Head>
             <main>
                 <PageHeader
-                    icon ={<UserPlusIcon className='h-14 w-14 text-blue-800 shadow-lg m-3 p-2 rounded-sm'/>}
+                    icon ={<UserPlusIcon className='page-header'/>}
                     title="Dependent"
                     description = "description"
                 />
@@ -25,9 +25,9 @@ export default function PatientDependent(){
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
-                                <TableRow className="bg-blue-500">
-                                    <TableCell className="font-bold">Name</TableCell>
-                                    <TableCell>DOB</TableCell>
+                                <TableRow className="bg-violet-200">
+                                    <TableCell className="font-bold text-violet-900">Name</TableCell>
+                                    <TableCell className="font-bold text-violet-900">DOB</TableCell>
                                     <TableCell>Gender</TableCell>
                                     <TableCell>Birth Cert No</TableCell>
                                     <TableCell>Allergy</TableCell>

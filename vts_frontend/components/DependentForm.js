@@ -26,26 +26,26 @@ export default function DependentForm(){
             <Grid container>
                 <Grid item xs={6}>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='First name' name='first_name' id='first_name' value={values.first_name}/>
+                        <TextField variant='outlined' label='First name' name='first_name' id='first_name' value={values.first_name} required/>
                     </div>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Birth Cert no' name='birth_cert_no' id='birth_cert_no' value={values.birth_cert_no}/>
+                        <TextField variant='outlined' label='Birth Cert no' name='birth_cert_no' id='birth_cert_no' value={values.birth_cert_no} required/>
                     </div>
                     <div className="w-full my-5">
                         <TextField variant='outlined' label='Allergy' name='allergy' id='allergy' value={values.allergy}/>
                     </div>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Relationship' name='relationship' id='relationship' value={values.relationship}/>
+                        <TextField variant='outlined' label='Relationship' name='relationship' id='relationship' value={values.relationship} required/>
                     </div>
                 </Grid>
                 <Grid item xs={6}>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Last name' name='last_name' id='last_name' value={values.last_name}/>
+                        <TextField variant='outlined' label='Last name' name='last_name' id='last_name' value={values.last_name} required/>
                     </div>
                     <div>
                         <FormControl required>
                             <FormLabel id="gender" name="gender">Gender</FormLabel>
-                            <RadioGroup name="gender" className="inline" >
+                            <RadioGroup name="gender" className="inline" required >
                                 <FormControlLabel value="M" control={<Radio />} label="Male" />
                                 <FormControlLabel value="F" control={<Radio />} label="Female" />
                             </RadioGroup>
@@ -53,7 +53,7 @@ export default function DependentForm(){
                     </div>
                     <div className="w-full my-5">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Date of Birth"  id="dob" name="dob" format="YYYY-MM-DD"  required/>
+                            <DatePicker label="Date of Birth"  id="dob" name="dob"   required/>
                         </LocalizationProvider>
                     </div>
                     <div>

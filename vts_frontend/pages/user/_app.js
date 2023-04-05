@@ -11,12 +11,12 @@ export default function AppUser({ Component, pageProps }) {
     if (isUserRoute && !isLoginPage && !isRegisterPage) {
         return(
             <Layout>
-                <Component {...pageProps} role='user' />
+                <Component {...pageProps}/>
             </Layout>
         )
     }
     else
     {
-        return <Component {...pageProps} role='user' />;
+        return <Component {...pageProps}/>;
     }
 }
