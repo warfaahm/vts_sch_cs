@@ -5,14 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f84c8050-d1a4-4a3b-9928-c7a5e1ff3dc8" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/components/ProviderLayout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ProviderSideBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/provider/_app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin/accounts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin/hospital.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin/profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin/reports.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin/vaccine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/provider/accounts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/provider/appointment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/provider/profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/provider/records.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/provider/reports.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vts_backend_new" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend_new" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/provider/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/provider/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AdminSideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AdminSideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ProviderSideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ProviderSideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +87,9 @@
       <workItem from="1680238593419" duration="36293000" />
       <workItem from="1680326822225" duration="11317000" />
       <workItem from="1680347099943" duration="23877000" />
-      <workItem from="1680687138459" duration="8588000" />
+      <workItem from="1680687138459" duration="8825000" />
+      <workItem from="1680768495454" duration="732000" />
+      <workItem from="1680804197727" duration="4428000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1680183054537</created>
@@ -137,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680705044860</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="first commit">
+      <created>1680707577548</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1680707577548</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

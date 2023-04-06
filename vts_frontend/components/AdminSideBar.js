@@ -1,8 +1,15 @@
 import {forwardRef} from "react";
 import Link from 'next/link';
-import { HomeIcon, UserCircleIcon, CalendarIcon, UserPlusIcon, FolderIcon, ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
+import {
+    HomeIcon,
+    UserCircleIcon,
+    ArrowRightOnRectangleIcon,
+    ChartBarSquareIcon
+} from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import {BsHospital} from "react-icons/bs";
+import {MdOutlineManageAccounts, MdOutlineVaccines} from "react-icons/md";
 
 
 
@@ -36,43 +43,55 @@ const AdminSideBar = forwardRef(({ showNav }, ref) => {
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/appointment'>
+                <Link href='/admin/hospital'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-                        router.pathname == '/admin/appointment' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                        router.pathname == '/admin/hospital' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>
                         <div className="mr-2">
-                            <CalendarIcon className='h-5 w-5'/>
+                            <BsHospital className='h-5 w-5'/>
                         </div>
                         <div>
-                            <p>Hospital</p>
+                            <p>Hospitals</p>
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/child'>
+                <Link href='/admin/vaccine'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-                        router.pathname == '/admin/child' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                        router.pathname == '/admin/vaccine' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>
                         <div className="mr-2">
-                            <UserPlusIcon className='h-5 w-5'/>
+                            <MdOutlineVaccines className='h-5 w-5'/>
                         </div>
                         <div>
-                            <p>Dependent</p>
+                            <p>Disease & Vaccine</p>
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/record'>
+                <Link href='/admin/accounts'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-                        router.pathname == '/admin/record' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                        router.pathname == '/admin/accounts' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>
                         <div className="mr-2">
-                            <FolderIcon className='h-5 w-5'/>
+                            <MdOutlineManageAccounts className='h-5 w-5'/>
                         </div>
                         <div>
-                            <p>Records</p>
+                            <p>Manage Users</p>
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/profile'>
+                <Link href='/admin/reports'>
+                    <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
+                        router.pathname == '/admin/reports' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                    }`}>
+                        <div className="mr-2">
+                            <ChartBarSquareIcon className='h-5 w-5'/>
+                        </div>
+                        <div>
+                            <p>Reports</p>
+                        </div>
+                    </div>
+                </Link>
+                <Link href='/admin/profile'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
                         router.pathname == '/admin/profile' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>

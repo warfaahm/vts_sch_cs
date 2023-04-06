@@ -1,8 +1,17 @@
 import {forwardRef} from "react";
 import Link from 'next/link';
-import { HomeIcon, UserCircleIcon, CalendarIcon, UserPlusIcon, FolderIcon, ArrowRightOnRectangleIcon } from "@heroicons/react/24/solid";
+import {
+    HomeIcon,
+    UserCircleIcon,
+    CalendarIcon,
+    UserPlusIcon,
+    FolderIcon,
+    ArrowRightOnRectangleIcon,
+    ChartBarSquareIcon
+} from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import {MdOutlineManageAccounts} from "react-icons/md";
 
 
 
@@ -44,25 +53,25 @@ const ProviderSideBar = forwardRef(({ showNav }, ref) => {
                             <CalendarIcon className='h-5 w-5'/>
                         </div>
                         <div>
-                            <p>Appointment</p>
+                            <p>Appointments</p>
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/child'>
+                <Link href='/provider/accounts'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-                        router.pathname == '/admin/child' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                        router.pathname == '/provider/accounts' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>
                         <div className="mr-2">
-                            <UserPlusIcon className='h-5 w-5'/>
+                            <MdOutlineManageAccounts className='h-5 w-5'/>
                         </div>
                         <div>
-                            <p>User Management</p>
+                            <p>Manage Users</p>
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/record'>
+                <Link href='/provider/records'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-                        router.pathname == '/admin/record' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                        router.pathname == '/provider/records' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>
                         <div className="mr-2">
                             <FolderIcon className='h-5 w-5'/>
@@ -72,9 +81,21 @@ const ProviderSideBar = forwardRef(({ showNav }, ref) => {
                         </div>
                     </div>
                 </Link>
-                <Link href='/user/profile'>
+                <Link href='/provider/reports'>
                     <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-                        router.pathname == '/admin/profile' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                        router.pathname == '/provider/reports' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
+                    }`}>
+                        <div className="mr-2">
+                            <ChartBarSquareIcon className='h-5 w-5'/>
+                        </div>
+                        <div>
+                            <p>Reports</p>
+                        </div>
+                    </div>
+                </Link>
+                <Link href='/provider/profile'>
+                    <div className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
+                        router.pathname == '/provider/profile' ? 'bg-blue-100 text-blue-500' : 'text-gray-700 hover:bg-blue-100 hover:text-blue-500'
                     }`}>
                         <div className="mr-2">
                             <UserCircleIcon className='h-5 w-5'/>
