@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetDependentRecord;
+use App\Http\Requests\GetPatientRecord;
 use App\Http\Requests\StoreRecordRequest;
 use App\Http\Resources\RecordResource;
 use App\Models\Dependent;
+use App\Models\Patient;
 use App\Models\Record;
 use App\Models\Vaccine;
 use Carbon\Carbon;
@@ -108,5 +111,35 @@ class RecordController extends Controller
         $record->update($request->all());
 
         return new RecordResource($record);
+    }
+
+    public function searchRecordPatient(GetPatientRecord $request)
+    {
+        $request->validated($request->all());
+
+        $patient = Patient::where('nat_id_no', $request->nat_id_no)->whereHas('user', function ($query) use ($request) {
+            $query->where('last_name', $request->last_name);
+        })->first();
+        $record = Record::where('patient_id', $patient->id)->get();
+        $data = RecordResource::collection($record);
+        return response()->json([
+            'message' => 'Request was successfull',
+            'patient' => $patient,
+            'records' => $data,
+        ]);
+    }
+
+    public function searchRecordDependent(GetDependentRecord $request)
+    {
+        $request->validated($request->all());
+
+        $patient = Dependent::where('birth_cert_no', $request->birth_cert_no)->where('last_name', $request->last_name)->first();
+        $record = Record::where('dependent_id', $patient->id)->get();
+        $data = RecordResource::collection($record);
+        return response()->json([
+            'message' => 'Request was successfull',
+            'patient' => $patient,
+            'records' => $data,
+        ]);
     }
 }

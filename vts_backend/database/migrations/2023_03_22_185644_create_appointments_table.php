@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->integer("dose_no");
-            $table->string('status', 15);
+            $table->enum('status', ['Confirmed', 'Cancelled', 'Pending', 'Completed', 'Please Reschedule'])->default('Pending');
             $table->unsignedBigInteger('hospital_id');
             $table->unsignedBigInteger('vaccine_id');
             $table->timestamps();

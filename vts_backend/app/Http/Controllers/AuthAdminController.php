@@ -42,7 +42,7 @@ class AuthAdminController extends Controller
 
         $admin = User::where('email', $request->email)->first();
 
-        if ($admin->role !== 'admin' && $admin->role !== 'admin_official')
+        if ($admin->role !== 'admin')
         {
             return $this->error('', 'You are not authorized to make this request', 403);
         }
@@ -64,7 +64,7 @@ class AuthAdminController extends Controller
 
     public function index()
     {
-        $admin = User::where('role', 'admin')->orWhere('role', 'admin_official')->get();
+        $admin = User::where('role', 'admin')->get();
         return $this->success($admin);
     }
 
@@ -72,7 +72,7 @@ class AuthAdminController extends Controller
     {
         $admin = User::find($id);
 
-        if ($admin->role !== 'admin' && $admin->role !== 'admin_official')
+        if ($admin->role !== 'admin')
         {
             return $this->error('', 'You are not authorized to make this request', 403);
         }

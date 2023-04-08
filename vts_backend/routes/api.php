@@ -95,6 +95,9 @@ Route::prefix('/staff')->group(function (){
     Route::middleware(['auth:sanctum', 'auth.provider'])->group(function (){
 
         Route::post('/logout', [\App\Http\Controllers\AuthProviderController::class, 'logout']);
+        Route::get('/profile', [\App\Http\Controllers\AuthProviderController::class, 'profile']);
+        Route::patch('/profile/update', [\App\Http\Controllers\AuthProviderController::class, 'updateProfile']);
+
         Route::post('/provider', [\App\Http\Controllers\AuthProviderController::class, 'registerProvider']);
         Route::get('/provider', [\App\Http\Controllers\AuthProviderController::class, 'indexProvider']);
         Route::get('/provider/{provider}', [\App\Http\Controllers\AuthProviderController::class, 'showProvider']);
@@ -103,10 +106,14 @@ Route::prefix('/staff')->group(function (){
         Route::post('/record', [\App\Http\Controllers\RecordController::class, 'store']);
         Route::patch('/record/{record}', [\App\Http\Controllers\RecordController::class, 'update']);
         Route::get('/record/{record}', [\App\Http\Controllers\RecordController::class, 'show']);
+        Route::post('/search_record', [\App\Http\Controllers\RecordController::class, 'searchRecordPatient']);
+        Route::post('/search_record2', [\App\Http\Controllers\RecordController::class, 'searchRecordDependent']);
 
         Route::get('/appointment', [\App\Http\Controllers\AppointmentController::class, 'index']);
         Route::get('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'show']);
         Route::patch('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'update']);
+
+
 
     });
 });
