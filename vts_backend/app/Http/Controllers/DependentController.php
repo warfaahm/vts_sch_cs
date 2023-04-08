@@ -43,7 +43,7 @@ class DependentController extends Controller
 
     public function show(Dependent $dependent)
     {
-        if (Auth::user()->patient()->id !== $dependent->patient_id){
+        if (Auth::user()->patient->id !== $dependent->patient_id){
             return $this->error('', 'You are not authorized to make this request', 403);
         }
 
