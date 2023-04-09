@@ -17,3 +17,11 @@
 .page-header{
     @apply h-14 w-14 text-blue-800 shadow-lg m-3 p-2 rounded-sm;
 }
+
+.dialog1{
+    @apply text-xs text-gray-600;
+}
+
+.dialog2{
+    @apply text-xl text-black;
+}

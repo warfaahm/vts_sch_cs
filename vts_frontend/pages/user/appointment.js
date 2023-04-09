@@ -2,9 +2,19 @@ import Head from "next/head";
 
 import PageHeader from "@/components/PageHeader";
 import {CalendarIcon} from "@heroicons/react/24/solid";
+import {Box, Tab} from "@mui/material";
+import {TabContext, TabList, TabPanel} from "@mui/lab";
+import AppointmentPatient from "@/components/appointment/AppointmentPatient";
+import {useState} from "react";
 
 
 export default function PatientAppointment(){
+
+    const [value, setValue] = useState('1');
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
         <>
@@ -15,8 +25,11 @@ export default function PatientAppointment(){
                 <PageHeader
                     icon ={<CalendarIcon className='page-header'/>}
                     title="Appointment"
-                    description = "description"
+                    description = "Schedule Hospital Appointment"
                 />
+                <div>
+                    <AppointmentPatient/>
+                </div>
             </main>
         </>
     )

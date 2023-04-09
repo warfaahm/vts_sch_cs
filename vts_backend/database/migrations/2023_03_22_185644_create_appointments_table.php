@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('dependent_id')->references('id')->on('dependents');
-            $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->foreign('hospital_id')->references('id')->`on('hospitals');
             $table->foreign('vaccine_id')->references('id')->on('vaccines');
         });
     }

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import DependentForm from "@/components/DependentForm";
+import DependentForm from "@/components/dependents/DependentForm";
 import {MagnifyingGlassIcon, PlusIcon, QrCodeIcon, UserPlusIcon} from "@heroicons/react/24/solid";
 import {
     Paper,
@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import Popup from "@/components/Popup";
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import moment from "moment";
-import DependentFormEdit from "@/components/DependentFormEdit";
+import DependentFormEdit from "@/components/dependents/DependentFormEdit";
 
 
 export default function PatientDependent() {
@@ -65,6 +65,8 @@ export default function PatientDependent() {
         handleEditClick();
     }, [token]);
 
+
+    // api for dependents
     const fetchData = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/user/dependent/', {

@@ -147,7 +147,7 @@ export default function Register(){
 
                                 <div className="w-full my-5">
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker label="Date of Birth"  id="dob" name="dob" format="YYYY-MM-DD" error={error?.errors?.dob !== undefined} helperText={error?.errors?.dob} className="w-full" onChange={handleDobChange} required/>
+                                        <DatePicker label="Date of Birth"  id="dob" name="dob" format="YYYY-MM-DD" disableFuture error={error?.errors?.dob !== undefined} helperText={error?.errors?.dob} className="w-full" onChange={handleDobChange} required/>
                                     </LocalizationProvider>
                                 </div>
 

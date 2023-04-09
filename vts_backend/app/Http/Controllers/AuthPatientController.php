@@ -80,7 +80,7 @@ class AuthPatientController extends Controller
 
     public function profile()
     {
-        $data = User::where('id', Auth::user()->id);
+        $data = User::where('id', Auth::user()->id)->first();
 
         return response()->json([
             'success' => true,

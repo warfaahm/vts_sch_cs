@@ -118,3 +118,12 @@ Route::prefix('/staff')->group(function (){
     });
 });
 
+Route::prefix('/hospital')->group(function (){
+    Route::get('/county', [\App\Http\Controllers\HospitalSearchController::class, 'county']);
+    Route::get('/sub_county/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'subCounty']);
+    Route::get('/ward/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'ward']);
+    Route::get('/hospital/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'hospital']);
+    Route::get('/disease', [\App\Http\Controllers\HospitalSearchController::class, 'disease']);
+    Route::get('/vaccine/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'vaccine']);
+});
+

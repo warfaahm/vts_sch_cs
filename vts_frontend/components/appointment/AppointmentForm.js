@@ -1,0 +1,398 @@
+import {useState, useEffect} from "react";
+
+import {
+    FormControl,
+    FormControlLabel,
+    FormLabel,
+    Grid,
+    InputLabel,
+    Radio,
+    RadioGroup,
+    Select,
+    TextField,
+    MenuItem, TableRow, TableCell
+} from "@mui/material";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import axios from "axios";
+import moment from "moment";
+import {PencilSquareIcon} from "@heroicons/react/24/outline";
+import {QrCodeIcon} from "@heroicons/react/24/solid";
+import {StaticTimePicker, TimeClock} from "@mui/x-date-pickers";
+import {DemoItem} from "@mui/x-date-pickers/internals/demo";
+import dayjs from "dayjs";
+
+const initialValues = {
+    dependent_id: null,
+    date: '',
+    time: '',
+    dose_no: '',
+    vaccine_id: 'N/A',
+    hospital_id: '',
+    status: 'confirmed',
+}
+
+export default function AppointmentForm(){
+
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 18);
+
+    const [values, setValues] =  useState(initialValues);
+    const [token1, setToken1] = useState(null);
+    const [data, setData] = useState(null);
+    const [dependent, setDependent] = useState(null);
+
+    const [counties, setCounties] = useState([]);
+    const [selectedCounty, setSelectedCounty] = useState('');
+    const [subcounties, setSubcounties] = useState([]);
+    const [selectedSubcounty, setSelectedSubcounty] = useState('');
+    const [wards, setWards] = useState([]);
+    const [selectedWard, setSelectedWard] = useState('');
+    const [hospitals, setHospitals] = useState([]);
+    const [selectedHospital, setSelectedHospital] = useState('');
+
+    const [diseases, setDiseases] = useState([]);
+    const [selectedDisease, setSelectedDisease] = useState('');
+    const [vaccines, setVaccines] = useState([]);
+    const [selectedVaccine, setSelectedVaccine] = useState('');
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/hospital/county')
+            .then(response => {
+                const data = response.data.data;
+                setCounties(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (selectedCounty) {
+            axios.get(`http://127.0.0.1:8000/api/hospital/sub_county/${selectedCounty}`)
+                .then(response => {
+                    const data = response.data.data;
+                    setSubcounties(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [selectedCounty]);
+
+    useEffect(() => {
+        if (selectedSubcounty) {
+            axios.get(`http://127.0.0.1:8000/api/hospital/ward/${selectedSubcounty}`)
+                .then(response => {
+                    const data = response.data.data;
+                    setWards(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [selectedSubcounty]);
+
+    useEffect(() => {
+        if (selectedWard) {
+            axios.get(`http://127.0.0.1:8000/api/hospital/hospital/${selectedWard}`)
+                .then(response => {
+                    const data = response.data.data;
+                    setHospitals(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [selectedWard]);
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/hospital/disease')
+            .then(response => {
+                const data = response.data.data;
+                setDiseases(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (selectedDisease) {
+            axios.get(`http://127.0.0.1:8000/api/hospital/vaccine/${selectedDisease}`)
+                .then(response => {
+                    const data = response.data.data;
+                    setVaccines(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [selectedDisease]);
+
+    const handleCountyChange = (event) => {
+        setSelectedCounty(event.target.value);
+        setSelectedSubcounty('');
+        setSelectedWard('');
+        setSelectedHospital('');
+    };
+
+    const handleSubcountyChange = (event) => {
+        setSelectedSubcounty(event.target.value);
+        setSelectedWard('');
+        setSelectedHospital('');
+    };
+
+    const handleWardChange = (event) => {
+        setSelectedWard(event.target.value);
+        setSelectedHospital('');
+    };
+
+    const handleHospitalChange = (event) => {
+        setSelectedHospital(event.target.value);
+    };
+
+    const handleDiseaseChange = (event) => {
+        setSelectedDisease(event.target.value);
+        setSelectedVaccine('');
+    };
+
+    const handleVaccineChange = (event) => {
+        setSelectedVaccine(event.target.value);
+    };
+
+    useEffect(() => {
+        const userToken = localStorage.getItem('userToken');
+        setToken1(userToken);
+    }, []);
+
+    let token;
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            token = localStorage.getItem('userToken');
+
+            console.log(token);
+            console.log("token");
+        }
+    }, []);
+
+    // for dependent select field
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/user/dependent/', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log(response.data);
+            setDependent(response.data.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [token]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/user/dependent',
+                {
+                    dob: moment(values.dob).format('YYYY-MM-DD'),
+                    first_name: values.first_name,
+                    last_name: values.last_name,
+                    birth_cert_no: values.birth_cert_no,
+                    gender: values.gender,
+                    allergy: values.allergy,
+                    relationship: values.relationship
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token1}`,
+
+                    },
+                }
+            );
+            console.log(response.data);
+            setData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // for dependent or self
+    const [selectedOption, setSelectedOption] = useState('');
+    const [showTextField, setShowTextField] = useState(false);
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+        setShowTextField(event.target.value === 'kids');
+    };
+
+    // useEffect(() => {
+    //     handleSubmit();
+    // }, [token]);
+
+    return (
+        <form className='m-2' onSubmit={handleSubmit}>
+            <Grid container>
+                <Grid item xs={6} className='mr-2'>
+                    <div>
+                        <FormControl required>
+                            <FormLabel id="appointment" name="appointment">Appointment For</FormLabel>
+                            <RadioGroup name="appointment" className="inline" value={selectedOption} onChange={handleOptionChange} required >
+                                <FormControlLabel value='null' control={<Radio />} label="Self" />
+                                <FormControlLabel value='kids' control={<Radio />} label="Dependent" />
+                            </RadioGroup>
+                            {showTextField && (
+                                <FormControl>
+                                    <InputLabel>Select Dependent</InputLabel>
+                                    <Select label='dependent'>
+
+                                        {(!dependent || !Array.isArray(dependent)) ? (
+                                            <MenuItem>No Dependents</MenuItem>
+                                        ) : (
+                                            dependent.map((item) => (
+                                                <MenuItem key={item.id} value={item.id}>
+                                                    {item.first_name+ '  '+item.last_name}
+                                                </MenuItem>
+                                            ))
+                                        )}
+                                    </Select>
+                                </FormControl>
+                            )}
+                        </FormControl>
+                    </div>
+                    <div className="w-full my-5">
+                        <FormControl className='w-full'>
+                            <InputLabel>Select County</InputLabel>
+                            <Select value={selectedCounty} onChange={handleCountyChange}>
+
+                                {(!counties || !Array.isArray(counties)) ? (
+                                    <MenuItem>No County</MenuItem>
+                                ) : (
+                                    counties.map((county) => (
+                                        <MenuItem key={county.id} value={county.id}>
+                                            {county.county_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+
+                    </div>
+                    <div className="w-full my-5">
+                        <FormControl className='w-full'>
+                            <InputLabel>Select Sub County</InputLabel>
+                            <Select value={selectedSubcounty} onChange={handleSubcountyChange} disabled={!selectedCounty}>
+
+                                {(!subcounties || !Array.isArray(subcounties)) ? (
+                                    <MenuItem>No Sub County</MenuItem>
+                                ) : (
+                                    subcounties.map((subcounty) => (
+                                        <MenuItem key={subcounty.id} value={subcounty.id}>
+                                            {subcounty.subCounty_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+
+                    </div>
+                    <div className="w-full my-5">
+                        <FormControl className='w-full'>
+                            <InputLabel>Select Ward</InputLabel>
+                            <Select value={selectedWard} onChange={handleWardChange} disabled={!selectedSubcounty}>
+
+                                {(!wards || !Array.isArray(wards)) ? (
+                                    <MenuItem>No Ward</MenuItem>
+                                ) : (
+                                    wards.map((ward) => (
+                                        <MenuItem key={ward.id} value={ward.id}>
+                                            {ward.ward_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+                    </div>
+                </Grid>
+                <Grid item xs={6}>
+                    <div className="w-full my-5">
+                        <FormControl className='w-full'>
+                            <InputLabel>Select Hospital</InputLabel>
+                            <Select value={selectedHospital} onChange={handleHospitalChange} disabled={!selectedWard}>
+
+                                {(!hospitals || !Array.isArray(hospitals)) ? (
+                                    <MenuItem>No Hospitals</MenuItem>
+                                ) : (
+                                    hospitals.map((hospital) => (
+                                        <MenuItem key={hospital.id} value={hospital.id}>
+                                            {hospital.hospital_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div className="w-full my-5">
+                        <FormControl className='w-full'>
+                            <InputLabel>Select Disease for Vaccination</InputLabel>
+                            <Select value={selectedDisease} onChange={handleDiseaseChange}>
+
+                                {(!diseases || !Array.isArray(diseases)) ? (
+                                    <MenuItem>No Disease</MenuItem>
+                                ) : (
+                                    diseases.map((disease) => (
+                                        <MenuItem key={disease.id} value={disease.id}>
+                                            {disease.disease_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+
+                    </div>
+                    <div>
+                        <FormControl className='w-full'>
+                            <InputLabel>Select Vaccine</InputLabel>
+                            <Select value={selectedVaccine} onChange={handleVaccineChange} disabled={!selectedDisease}>
+
+                                {(!vaccines || !Array.isArray(vaccines)) ? (
+                                    <MenuItem>No Vaccine</MenuItem>
+                                ) : (
+                                    vaccines.map((vaccine) => (
+                                        <MenuItem key={vaccine.id} value={vaccine.id}>
+                                            {vaccine.vaccine_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div className="w-full my-5">
+                        <TextField label='Dose No' type='integer' />
+                    </div>
+                    <div className="w-full my-5">
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker label="Date of Birth"  id="dob" name="dob" disableFuture onChange={(date) => setValues({...values, dob: date})} required/>
+                        </LocalizationProvider>
+                    </div>
+                    <div className="w-full my-5">
+                        <label className='block'>Select Time</label>
+                        <input type='time' className='block mt-5 text-3xl'/>
+                    </div>
+                    <div>
+                        <button type='submit' className='text-white bg-blue-500 rounded-md py-3 px-5 hover:bg-blue-700 mr-3' >Submit</button>
+                        <button type='reset' value='Reset' className='text-black bg-gray-400 rounded-md py-3 px-5 hover:bg-gray-600 hover:text-white'>Reset</button>
+                    </div>
+                </Grid>
+            </Grid>
+            <div>
+                {data != null  && <h1 className="success-msg">{data.status}</h1>}
+            </div>
+        </form>
+    )
+}
