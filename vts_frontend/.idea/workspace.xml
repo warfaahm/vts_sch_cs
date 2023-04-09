@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f84c8050-d1a4-4a3b-9928-c7a5e1ff3dc8" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/components/appointment/AppointmentForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/appointment/AppointmentPatient.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/record/RecordDependentPop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/record/RecordPatientPop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/record/RecordsDependent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/record/RecordsPatient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthPatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthPatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/database/migrations/2023_03_22_185644_create_appointments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/database/migrations/2023_03_22_185644_create_appointments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vts_backend_new" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend_new" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DependentForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/dependents/DependentForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/DependentFormEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/dependents/DependentFormEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/user/appointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/appointment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/user/child.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/child.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/user/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/user/record.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/record.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/user/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +81,7 @@
       <workItem from="1680804197727" duration="5435000" />
       <workItem from="1680878290769" duration="24163000" />
       <workItem from="1680928178845" duration="50246000" />
-      <workItem from="1681046543555" duration="11794000" />
+      <workItem from="1681046543555" duration="12182000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1680183054537</created>
@@ -187,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680961033606</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="first commit">
+      <created>1681060061194</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681060061194</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
