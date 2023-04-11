@@ -47,7 +47,7 @@ export default function VaccineForm()
     };
     const handleDiseaseChange = (event, selectedOptions) => {
         //setDiseasesid([event.target.value]);
-        const selectedDiseaseNames = selectedOptions.map((option) => option.disease_name);
+        const selectedDiseaseNames = selectedOptions.map((option) => option.id);
         setDiseasesid(selectedDiseaseNames);
     };
     const handlePriceChange = (event) => {
@@ -121,6 +121,8 @@ export default function VaccineForm()
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            const diseaseIds = diseasesid.map((disease) => disease);
+
             const response = await axios.post('http://127.0.0.1:8000/api/admin/vaccine',
                 {
                     vaccine_name: vname,
@@ -133,7 +135,7 @@ export default function VaccineForm()
                     duration3: duration3,
                     validity_duration: validity,
                     price: price,
-                    disease_id: diseasesid,
+                    disease_id: diseaseIds,
                 },
                 {
                     headers: {
@@ -174,6 +176,7 @@ export default function VaccineForm()
                                 options={diseases}
                                 disableCloseOnSelect
                                 getOptionLabel={(option) => option.disease_name}
+                                getOptionSelected={(option, value) => option.id === value.id}
                                 renderOption={(props, option, { selected }) => (
                                     <li {...props}>
                                         <Checkbox
@@ -235,7 +238,7 @@ export default function VaccineForm()
                         </FormControl>
                     </div>
                     <div className='m-2'>
-                        <TextField variant='outlined' label='Price' name='price' id='price' type='number' step={0.01} onChange={handlePriceChange} required/>
+                        <TextField variant='outlined' label='Price' name='price' id='price' step={0.01} onChange={handlePriceChange} required/>
                     </div>
                     <div className='m-2'>
                         <TextField variant='outlined' type='number' label='Validity Duration (Months)' name='validity' id='validity' onChange={handleValidityChange}/>

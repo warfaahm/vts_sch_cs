@@ -17,12 +17,14 @@ import Popup from "@/components/Popup";
 import HospitalForm from "@/components/hospital/HospitalForm";
 import HospitalFormEdit from "@/components/hospital/HospitalFormEdit";
 import VaccineForm from "@/components/vaccine/VaccineForm";
+import VaccineView from "@/components/vaccine/VaccineView";
 
 
 export default function Vaccines()
 {
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
+    const [openPopupView, setOpenPopupView] = useState(false);
     const [openPopupEdit, setOpenPopupEdit] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [token1, setToken1] = useState(null);
@@ -144,6 +146,13 @@ export default function Vaccines()
                     title='Vaccine Edit Form'
                 >
                     <HospitalFormEdit />
+                </Popup>
+                <Popup
+                    openPopup={openPopupView}
+                    setOpenPopup={setOpenPopupView}
+                    title='Vaccine View'
+                >
+                    <VaccineView />
                 </Popup>
             </div>
         </div>
