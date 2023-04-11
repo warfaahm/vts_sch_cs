@@ -6,14 +6,14 @@ import Link from 'next/link';
 import Image from "next/image";
 import axios from "axios";
 
-export default function TopBar({ showNav, setShowNav }) {
+export default function TopBarAdmin({ showNav, setShowNav }) {
 
     const [data, setData] = useState(null);
 
     let token;
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            token = localStorage.getItem('userToken');
+            token = localStorage.getItem('adminToken');
 
             console.log(token);
             console.log("token");
@@ -22,7 +22,7 @@ export default function TopBar({ showNav, setShowNav }) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/user/profile/', {
+            const response = await axios.get('http://127.0.0.1:8000/api/admin/profile/', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -49,13 +49,13 @@ export default function TopBar({ showNav, setShowNav }) {
                         <BellIcon className='H-6 W-6' />
                     </Popover.Button>
                     <Transition
-                    as={Fragment}
-                    enter='transition ease-out duration-100'
-                    enterFrom='transform scale-95'
-                    enterTo='transform scale-100'
-                    leave='transition ease-in duration=75'
-                    leaveFrom='transform scale-100'
-                    leaveTo='transform scale-98'>
+                        as={Fragment}
+                        enter='transition ease-out duration-100'
+                        enterFrom='transform scale-95'
+                        enterTo='transform scale-100'
+                        leave='transition ease-in duration=75'
+                        leaveFrom='transform scale-100'
+                        leaveTo='transform scale-98'>
                         <Popover.Panel className='absolute -right-16 sm:right-4 z-50 mt-2 bg-white shadow-sm rounded max-w-xs sm:max-w-sm w-screen'>
                             <dv className='relative p-3'>
                                 <div className='flex justify-between items-center w-full'>
@@ -107,7 +107,7 @@ export default function TopBar({ showNav, setShowNav }) {
                         <Menu.Items className='absolute right-0 w-56 z-50 mt-2 origin-top-right bg-white rounded shadow-sm'>
                             <div className='p-1'>
                                 <Menu.Item>
-                                    <Link href='/user/profile' className='flex hover:bg-blue-600 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center'>
+                                    <Link href='/admin/profile' className='flex hover:bg-blue-600 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center'>
                                         <PencilIcon className='h-4 w-4 mr-2'/>
                                         <span>Profile</span>
                                     </Link>

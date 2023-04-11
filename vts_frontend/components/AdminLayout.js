@@ -2,6 +2,7 @@ import {useState, useEffect, Fragment} from "react";
 import TopBar from './TopBar';
 import {Transition} from "@headlessui/react";
 import AdminSideBar from "@/components/AdminSideBar";
+import TopBarAdmin from "@/components/TopBarAdmin";
 
 export default function Layout({ children }) {
     const [showNav, setShowNav] = useState(true);
@@ -29,7 +30,7 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <TopBar showNav={showNav} setShowNav={setShowNav} />
+            <TopBarAdmin showNav={showNav} setShowNav={setShowNav} />
             <Transition
                 as={Fragment}
                 show={showNav}

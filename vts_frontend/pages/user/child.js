@@ -20,15 +20,29 @@ import Popup from "@/components/Popup";
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import moment from "moment";
 import DependentFormEdit from "@/components/dependents/DependentFormEdit";
+import QRCode from "qrcode.react";
+import QRCodeGenerate from "@/components/QRCodeGenerate";
 
 
 export default function PatientDependent() {
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
+    const [openPopup1, setOpenPopup1] = useState(false);
     const [openPopupEdit, setOpenPopupEdit] = useState(false);
     const [dependent, setDependent] = useState(null);
+    const [name1, setName] = useState(null);
+    const [birthID, setBirthID] = useState(null);
 
     const [token1, setToken1] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = event => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredData = data?.filter(item => {
+        return item?.first_name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -65,6 +79,11 @@ export default function PatientDependent() {
         handleEditClick();
     }, [token]);
 
+    const handleQR = (name2, id2) => {
+        setName(name2);
+        setBirthID(id2);
+        setOpenPopup1(true);
+    }
 
     // api for dependents
     const fetchData = async () => {
@@ -103,6 +122,7 @@ export default function PatientDependent() {
                             label='Search Dependents'
                             name='search'
                             className='bg-white'
+                            onChange={handleSearch}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="start">
@@ -135,7 +155,7 @@ export default function PatientDependent() {
                                             <TableCell colSpan={5} align="center">Loading...</TableCell>
                                         </TableRow>
                                     ) : (
-                                        data.map((item) => (
+                                        filteredData.map((item) => (
                                             <TableRow key={item.id} className="hover:bg-gray-100">
                                                 <TableCell>{item.first_name+ '  '+item.last_name}</TableCell>
                                                 <TableCell>{moment(item.dob).format('DD/MM/YYYY')}</TableCell>
@@ -147,7 +167,7 @@ export default function PatientDependent() {
                                                         <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
                                                             <PencilSquareIcon className='w-5 h-5'/>
                                                         </button>
-                                                        <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4' >
+                                                        <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4' onClick={() => handleQR(item.last_name, item.birth_cert_no)}>
                                                             <QrCodeIcon className='w-5 h-5'/>
                                                         </button>
                                                     </div>
@@ -174,6 +194,13 @@ export default function PatientDependent() {
                         title='Dependent Edit Form'
                     >
                         <DependentFormEdit data={dependent}/>
+                    </Popup>
+                    <Popup
+                        openPopup={openPopup1}
+                        setOpenPopup={setOpenPopup1}
+                        title='QR Code'
+                    >
+                        <QRCodeGenerate name={name1} id={birthID}/>
                     </Popup>
                 </div>
             </main>

@@ -17,18 +17,14 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {DatePicker} from "@mui/x-date-pickers/DatePicker";
 import axios from "axios";
 import moment from "moment";
-import {PencilSquareIcon} from "@heroicons/react/24/outline";
-import {QrCodeIcon} from "@heroicons/react/24/solid";
-import {StaticTimePicker, TimeClock} from "@mui/x-date-pickers";
-import {DemoItem} from "@mui/x-date-pickers/internals/demo";
-import dayjs from "dayjs";
+
 
 const initialValues = {
     dependent_id: null,
     date: '',
     time: '',
     dose_no: '',
-    vaccine_id: 'N/A',
+    vaccine_id: '',
     hospital_id: '',
     status: 'confirmed',
 }
@@ -42,6 +38,9 @@ export default function AppointmentForm(){
     const [token1, setToken1] = useState(null);
     const [data, setData] = useState(null);
     const [dependent, setDependent] = useState(null);
+    const [date, setDate] = useState(null);
+    const [dose, setDose] = useState(null);
+    const [time, setTime] = useState(null);
 
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
@@ -56,6 +55,7 @@ export default function AppointmentForm(){
     const [selectedDisease, setSelectedDisease] = useState('');
     const [vaccines, setVaccines] = useState([]);
     const [selectedVaccine, setSelectedVaccine] = useState('');
+    const [selectedDependent, setSelectedDependent] = useState(null);
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/hospital/county')
@@ -162,6 +162,22 @@ export default function AppointmentForm(){
         setSelectedVaccine(event.target.value);
     };
 
+    const handleDependentChange = (event) => {
+        setSelectedDependent(event.target.value);
+    };
+
+    const handleDateChange = (date) => {
+        setDate(date);
+    };
+
+    const handleDoseChange = (event) => {
+        setDose(event.target.value);
+    };
+
+    const handleTimeChange = (event) => {
+        setTime(event.target.value);
+    };
+
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
         setToken1(userToken);
@@ -199,15 +215,15 @@ export default function AppointmentForm(){
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/user/dependent',
+            const response = await axios.post('http://127.0.0.1:8000/api/user/appointment',
                 {
-                    dob: moment(values.dob).format('YYYY-MM-DD'),
-                    first_name: values.first_name,
-                    last_name: values.last_name,
-                    birth_cert_no: values.birth_cert_no,
-                    gender: values.gender,
-                    allergy: values.allergy,
-                    relationship: values.relationship
+                    date: moment(date).format('YYYY-MM-DD'),
+                    dose_no: dose,
+                    hospital_id: selectedHospital,
+                    vaccine_id: selectedVaccine,
+                    time: time,
+                    dependent_id: selectedDependent,
+                    status: values.status,
                 },
                 {
                     headers: {
@@ -223,6 +239,10 @@ export default function AppointmentForm(){
         }
     };
 
+    // useEffect(() => {
+    //     handleSubmit();
+    // }, [token]);
+
     // for dependent or self
     const [selectedOption, setSelectedOption] = useState('');
     const [showTextField, setShowTextField] = useState(false);
@@ -230,10 +250,6 @@ export default function AppointmentForm(){
         setSelectedOption(event.target.value);
         setShowTextField(event.target.value === 'kids');
     };
-
-    // useEffect(() => {
-    //     handleSubmit();
-    // }, [token]);
 
     return (
         <form className='m-2' onSubmit={handleSubmit}>
@@ -249,7 +265,7 @@ export default function AppointmentForm(){
                             {showTextField && (
                                 <FormControl>
                                     <InputLabel>Select Dependent</InputLabel>
-                                    <Select label='dependent'>
+                                    <Select label='dependent' value={selectedDependent} onChange={handleDependentChange} >
 
                                         {(!dependent || !Array.isArray(dependent)) ? (
                                             <MenuItem>No Dependents</MenuItem>
@@ -373,16 +389,16 @@ export default function AppointmentForm(){
                         </FormControl>
                     </div>
                     <div className="w-full my-5">
-                        <TextField label='Dose No' type='integer' />
+                        <TextField label='Dose No' type='integer' onChange={handleDoseChange} />
                     </div>
                     <div className="w-full my-5">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Date of Birth"  id="dob" name="dob" disableFuture onChange={(date) => setValues({...values, dob: date})} required/>
+                            <DatePicker label="Date"  id="dob" name="data" disablePast onChange={handleDateChange} required/>
                         </LocalizationProvider>
                     </div>
                     <div className="w-full my-5">
                         <label className='block'>Select Time</label>
-                        <input type='time' className='block mt-5 text-3xl'/>
+                        <input type='time' className='block mt-5 text-3xl' onChange={handleTimeChange}/>
                     </div>
                     <div>
                         <button type='submit' className='text-white bg-blue-500 rounded-md py-3 px-5 hover:bg-blue-700 mr-3' >Submit</button>

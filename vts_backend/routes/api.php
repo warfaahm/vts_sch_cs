@@ -83,6 +83,7 @@ Route::prefix('/admin')->group(function (){
         Route::post('/provider', [\App\Http\Controllers\AuthProviderController::class, 'register']);
         Route::get('/provider', [\App\Http\Controllers\AuthProviderController::class, 'index']);
         Route::get('/provider/{provider}', [\App\Http\Controllers\AuthProviderController::class, 'show']);
+        Route::get('/profile', [\App\Http\Controllers\AuthAdminController::class, 'profile']);
 
 
     });

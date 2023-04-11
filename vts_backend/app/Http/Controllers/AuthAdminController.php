@@ -86,4 +86,15 @@ class AuthAdminController extends Controller
 
         return $this->success($admin);
     }
+
+    public function profile()
+    {
+        $data = User::where('id', Auth::user()->id)->first();
+
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+            'patient' => $data->patient,
+        ]);
+    }
 }
