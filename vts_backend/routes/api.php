@@ -126,5 +126,6 @@ Route::prefix('/hospital')->group(function (){
     Route::get('/hospital/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'hospital']);
     Route::get('/disease', [\App\Http\Controllers\HospitalSearchController::class, 'disease']);
     Route::get('/vaccine/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'vaccine']);
+    Route::post('/appointment/', [\App\Http\Controllers\AppointmentController::class, 'getAppointmentSlots']);
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
+use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,5 +88,31 @@ class AppointmentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getAppointmentSlots(Request $request)
+    {
+        $timeSlots = ['9.1', '9.2', '10.1', '10.2', '11.1', '11.2', '12.1', '12.2', '14.1', '14.2', '15.1', '15.2', '16.1', '16.2'];
+        $date = $request->input('date');
+        $hospital_id = $request->input('hospital_id');
+
+        $hospital = Hospital::where('id', $hospital_id)->first();
+        $slot = $hospital->slots;
+
+        $id = 1;
+        foreach ($timeSlots as $timeSlot) {
+            $appointmentsCount = Appointment::where('date', $date)
+                ->where('hospital_id', $hospital_id)
+                ->where('time', $timeSlot)
+                ->count();
+
+            $slotsRemaining[] = [
+                'id' => $id,
+                'time_slot' =>  $timeSlot,
+                'slots' => $slot - $appointmentsCount,
+            ];
+            $id++;
+        }
+        return response()->json(['data' => $slotsRemaining]);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('dependent_id')->nullable();
             $table->date('date');
-            $table->time('time');
+            $table->enum('time', ['9.1', '9.2', '10.1', '10.2', '11.1', '11.2', '12.1', '12.2', '14.1', '14.2', '15.1', '15.2', '16.1', '16.2']);
             $table->integer("dose_no");
             $table->enum('status', ['Confirmed', 'Cancelled', 'Pending', 'Completed', 'Please Reschedule'])->default('Pending');
             $table->unsignedBigInteger('hospital_id');
@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('dependent_id')->references('id')->on('dependents');
-            $table->foreign('hospital_id')->references('id')->`on('hospitals');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
             $table->foreign('vaccine_id')->references('id')->on('vaccines');
         });
     }
