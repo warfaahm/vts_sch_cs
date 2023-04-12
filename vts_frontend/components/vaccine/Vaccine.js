@@ -18,11 +18,14 @@ import HospitalForm from "@/components/hospital/HospitalForm";
 import HospitalFormEdit from "@/components/hospital/HospitalFormEdit";
 import VaccineForm from "@/components/vaccine/VaccineForm";
 import VaccineView from "@/components/vaccine/VaccineView";
+import VaccineFormEdit from "@/components/vaccine/VaccineFormEdit";
 
 
 export default function Vaccines()
 {
     const [data, setData] = useState(null);
+    const [vaccine, setVaccine] = useState(null);
+    const [vaccine1, setVaccine1] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
     const [openPopupView, setOpenPopupView] = useState(false);
     const [openPopupEdit, setOpenPopupEdit] = useState(false);
@@ -46,6 +49,11 @@ export default function Vaccines()
         }
     }, []);
 
+    useEffect(() => {
+        const userToken = localStorage.getItem('adminToken');
+        setToken1(userToken);
+    }, []);
+
     const fetchData = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/admin/vaccine/', {
@@ -62,6 +70,40 @@ export default function Vaccines()
     useEffect(() => {
         fetchData();
     }, [token]);
+
+    const handleClick = async (id) => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/admin/vaccine/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token1}`
+                }
+            });
+            console.log(response.data);
+            setVaccine(response.data.data);
+            setOpenPopupView(true);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        handleClick();
+    }, [token1]);
+
+    const handleEditClick = async (id) => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/admin/vaccine/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token1}`
+                }
+            });
+            console.log(response.data);
+            setVaccine1(response.data.data);
+            setOpenPopupEdit(true);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -119,7 +161,7 @@ export default function Vaccines()
                                                     <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
                                                         <PencilSquareIcon className='w-5 h-5'/>
                                                     </button>
-                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-2' onClick={() => handleEditClick(item.id)}>
+                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-2' onClick={() => handleClick(item.id)}>
                                                         <ArrowsPointingOutIcon className='w-5 h-5'/>
                                                     </button>
                                                 </div>
@@ -145,14 +187,14 @@ export default function Vaccines()
                     setOpenPopup={setOpenPopupEdit}
                     title='Vaccine Edit Form'
                 >
-                    <HospitalFormEdit />
+                    <VaccineFormEdit data={vaccine1} />
                 </Popup>
                 <Popup
                     openPopup={openPopupView}
                     setOpenPopup={setOpenPopupView}
                     title='Vaccine View'
                 >
-                    <VaccineView />
+                    <VaccineView data={vaccine} />
                 </Popup>
             </div>
         </div>

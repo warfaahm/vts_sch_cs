@@ -41,6 +41,8 @@ export default function AppointmentForm(){
     const [date, setDate] = useState(null);
     const [dose, setDose] = useState(null);
     const [time, setTime] = useState(null);
+    const [data1, setData1] = useState(null);
+
 
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
@@ -56,6 +58,9 @@ export default function AppointmentForm(){
     const [vaccines, setVaccines] = useState([]);
     const [selectedVaccine, setSelectedVaccine] = useState('');
     const [selectedDependent, setSelectedDependent] = useState(null);
+
+    const [slots, setSlots] = useState([]);
+    const [selectedSlot, setSelectedSlot] = useState('');
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/hospital/county')
@@ -131,6 +136,24 @@ export default function AppointmentForm(){
         }
     }, [selectedDisease]);
 
+    useEffect(() => {
+        if (selectedHospital, date) {
+            axios.post(`http://127.0.0.1:8000/api/hospital/appointment/`,
+                {
+                    hospital_id: selectedHospital,
+                    date: moment(date).format('YYYY-MM-DD'),
+                },
+                )
+                .then(response => {
+                    const data = response.data.data;
+                    setSlots(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [selectedHospital, date]);
+
     const handleCountyChange = (event) => {
         setSelectedCounty(event.target.value);
         setSelectedSubcounty('');
@@ -160,6 +183,10 @@ export default function AppointmentForm(){
 
     const handleVaccineChange = (event) => {
         setSelectedVaccine(event.target.value);
+    };
+
+    const handleSlotChange = (event) => {
+        setSelectedSlot(event.target.value);
     };
 
     const handleDependentChange = (event) => {
@@ -215,16 +242,19 @@ export default function AppointmentForm(){
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/user/appointment',
-                {
-                    date: moment(date).format('YYYY-MM-DD'),
-                    dose_no: dose,
-                    hospital_id: selectedHospital,
-                    vaccine_id: selectedVaccine,
-                    time: time,
-                    dependent_id: selectedDependent,
-                    status: values.status,
-                },
+            const data2 = {
+                date: moment(date).format('YYYY-MM-DD'),
+                dose_no: dose,
+                hospital_id: selectedHospital,
+                vaccine_id: selectedVaccine,
+                time: selectedSlot,
+                status: 'Pending',
+            };
+
+            if (selectedDependent != null) {
+                data.dependent_id = selectedDependent;
+            }
+            const response = await axios.post('http://127.0.0.1:8000/api/user/appointment', data2,
                 {
                     headers: {
                         Authorization: `Bearer ${token1}`,
@@ -233,7 +263,7 @@ export default function AppointmentForm(){
                 }
             );
             console.log(response.data);
-            setData(response.data);
+            setData1(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -249,7 +279,17 @@ export default function AppointmentForm(){
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
         setShowTextField(event.target.value === 'kids');
+        if (event.target.value === 'Self')
+        {
+            setSelectedDependent(null);
+        }
     };
+
+    function formatTimeSlot(timeSlot) {
+        const hour = parseInt(timeSlot.split('.')[0]);
+        const minute = parseInt(timeSlot.split('.')[1]) === 1 ? '00' : '30';
+        return `${hour}:${minute}`;
+    }
 
     return (
         <form className='m-2' onSubmit={handleSubmit}>
@@ -389,7 +429,7 @@ export default function AppointmentForm(){
                         </FormControl>
                     </div>
                     <div className="w-full my-5">
-                        <TextField label='Dose No' type='integer' onChange={handleDoseChange} />
+                        <TextField label='Dose No' type='number' onChange={handleDoseChange} />
                     </div>
                     <div className="w-full my-5">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -397,8 +437,24 @@ export default function AppointmentForm(){
                         </LocalizationProvider>
                     </div>
                     <div className="w-full my-5">
-                        <label className='block'>Select Time</label>
-                        <input type='time' className='block mt-5 text-3xl' onChange={handleTimeChange}/>
+                        <div className="w-full my-5">
+                            <FormControl className='w-full'>
+                                <InputLabel>Select Time Slot for Vaccination</InputLabel>
+                                <Select value={selectedSlot} onChange={handleSlotChange}>
+
+                                    {(!slots || !Array.isArray(slots)) ? (
+                                        <MenuItem>No Slots</MenuItem>
+                                    ) : (
+                                        slots.map((slot) => (
+                                            <MenuItem key={slot.id} value={slot.id}>
+                                                {slot.slots > 0 && formatTimeSlot(slot.time_slot) + ' - '}{slot.slots} Slots Remaining
+                                            </MenuItem>
+                                        ))
+                                    )}
+                                </Select>
+                            </FormControl>
+
+                        </div>
                     </div>
                     <div>
                         <button type='submit' className='text-white bg-blue-500 rounded-md py-3 px-5 hover:bg-blue-700 mr-3' >Submit</button>
@@ -407,7 +463,7 @@ export default function AppointmentForm(){
                 </Grid>
             </Grid>
             <div>
-                {data != null  && <h1 className="success-msg">{data.status}</h1>}
+                {data1 != null  && <h1 className="success-msg">{data1.message}</h1>}
             </div>
         </form>
     )

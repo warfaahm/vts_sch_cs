@@ -168,7 +168,7 @@ export default function VaccineForm()
                         <TextField variant='outlined' label='Age Range' name='age' id='allergy' onChange={handleAgeChange} required/>
                     </div>
 
-                    <dv>
+                    <div>
                         {diseases && (
                             <Autocomplete
                                 multiple
@@ -188,14 +188,14 @@ export default function VaccineForm()
                                         {option.disease_name}
                                     </li>
                                 )}
-                                style={{ width: 300 }}
+                                style={{ width: 240 }}
                                 onChange={handleDiseaseChange}
                                 renderInput={(params) => (
                                     <TextField {...params} label="Diseases" placeholder="Disease" />
                                 )}
                             />
                         )}
-                    </dv>
+                    </div>
                 </Grid>
                 <Grid item xs={6} className='m-6'>
                     <div className="w-full my-5">

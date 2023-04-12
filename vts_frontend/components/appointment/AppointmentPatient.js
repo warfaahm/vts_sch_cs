@@ -74,6 +74,12 @@ export default function AppointmentPatient()
         fetchData();
     }, [token]);
 
+    function formatTimeSlot(timeSlot) {
+        const hour = parseInt(timeSlot.split('.')[0]);
+        const minute = parseInt(timeSlot.split('.')[1]) === 1 ? '00' : '30';
+        return `${hour}:${minute}`;
+    }
+
     return (
         <>
             <div className='bg-blue-50 px-4 py-6 rounded-lg mt-4'>
@@ -124,7 +130,7 @@ export default function AppointmentPatient()
                                             <TableCell>{item.vaccine.vaccine_name}</TableCell>
                                             <TableCell>{item.dose_no}</TableCell>
                                             <TableCell>{moment(item.date).format('DD/MM/YYYY')}</TableCell>
-                                            <TableCell>{item.time}</TableCell>
+                                            <TableCell>{formatTimeSlot(item.time)}</TableCell>
                                             <TableCell><span className='bg-green-200 text-green-800 border border-green-800 px-1.5 py-1.5 rounded-full'>{item.status}</span></TableCell>
                                         </TableRow>
                                     ))

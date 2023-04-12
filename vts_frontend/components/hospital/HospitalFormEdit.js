@@ -86,7 +86,7 @@ export default function HospitalFormEdit(props)
                 </Grid>
             </Grid>
             <div>
-                {data1 != null  && <h1 className="success-msg">{data.status}</h1>}
+                {data1 != null  && <h1 className="success-msg">{data1.status}</h1>}
             </div>
         </form>
     )
