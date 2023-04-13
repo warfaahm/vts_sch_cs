@@ -131,7 +131,7 @@ export default function AppointmentPatient()
                                             <TableCell>{item.dose_no}</TableCell>
                                             <TableCell>{moment(item.date).format('DD/MM/YYYY')}</TableCell>
                                             <TableCell>{formatTimeSlot(item.time)}</TableCell>
-                                            <TableCell><span className='bg-green-200 text-green-800 border border-green-800 px-1.5 py-1.5 rounded-full'>{item.status}</span></TableCell>
+                                            <TableCell><span className={item.status.toLowerCase()}>{item.status}</span></TableCell>
                                         </TableRow>
                                     ))
                                 )}

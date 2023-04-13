@@ -25,3 +25,19 @@
 .dialog2{
     @apply text-xl text-black;
 }
+
+.confirmed{
+    @apply bg-green-200 text-green-800 border border-green-800 px-1.5 py-1.5 rounded-full;
+}
+
+.cancelled{
+    @apply bg-red-200 text-red-800 border border-red-800 px-1.5 py-1.5 rounded-full;
+}
+
+.pending{
+    @apply bg-yellow-200 text-yellow-800 border border-yellow-800 px-1.5 py-1.5 rounded-full;
+}
+
+.completed{
+    @apply bg-blue-200 text-blue-800 border border-blue-800 px-1.5 py-1.5 rounded-full;
+}

@@ -6,12 +6,14 @@ import axios from "axios";
 import moment from "moment/moment";
 import Popup from "@/components/Popup";
 import QRCodeGenerate from "@/components/QRCodeGenerate";
+import ProfileUser from "@/components/profile/ProfileUser";
 
 
 export default function PatientProfile(){
 
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
+    const [openPopup1, setOpenPopup1] = useState(false);
 
     let token;
     useEffect(() => {
@@ -55,7 +57,7 @@ export default function PatientProfile(){
                 <div>
                     <div>
                         <div>
-                            <button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-2 mx-2'>Edit Profile</button>
+                            <button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-2 mx-2' onClick={()=>setOpenPopup1(true)}>Edit Profile</button>
                         </div>
                         <div>
                             <button className='border border-green-700 rounded px-2 py-1 text-green-800 hover:bg-green-100 my-2 mx-2' onClick={()=>setOpenPopup(true)}>Get QR Code</button>
@@ -106,6 +108,13 @@ export default function PatientProfile(){
                     title='QR Code'
                 >
                     <QRCodeGenerate name={data?.last_name} id={data?.patient?.nat_id_no}/>
+                </Popup>
+                <Popup
+                    openPopup={openPopup1}
+                    setOpenPopup={setOpenPopup1}
+                    title='Edit Profile'
+                >
+                    <ProfileUser data={data}/>
                 </Popup>
             </main>
         </>
