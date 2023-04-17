@@ -42,6 +42,7 @@ Route::prefix('/user')->group(function (){
         Route::post('/appointment', [\App\Http\Controllers\AppointmentController::class, 'store']);
         Route::get('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'showUser']);
         Route::patch('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'updateUser']);
+        Route::delete('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'destroy']);
 
         Route::get('/dependentRecord', [\App\Http\Controllers\RecordController::class, 'indexForDependent']);
         Route::get('/record', [\App\Http\Controllers\RecordController::class, 'indexForPatient']);
@@ -83,6 +84,7 @@ Route::prefix('/admin')->group(function (){
         Route::post('/provider', [\App\Http\Controllers\AuthProviderController::class, 'register']);
         Route::get('/provider', [\App\Http\Controllers\AuthProviderController::class, 'index']);
         Route::get('/provider/{provider}', [\App\Http\Controllers\AuthProviderController::class, 'show']);
+        Route::delete('/provider/{provider}', [\App\Http\Controllers\AuthProviderController::class, 'destroy']);
         Route::get('/profile', [\App\Http\Controllers\AuthAdminController::class, 'profile']);
 
 
@@ -111,6 +113,8 @@ Route::prefix('/staff')->group(function (){
         Route::post('/search_record2', [\App\Http\Controllers\RecordController::class, 'searchRecordDependent']);
 
         Route::get('/appointment', [\App\Http\Controllers\AppointmentController::class, 'index']);
+        Route::post('/appointment', [\App\Http\Controllers\AppointmentController::class, 'indexSearch']);
+        Route::post('/status', [\App\Http\Controllers\AppointmentController::class, 'updateStatuses']);
         Route::get('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'show']);
         Route::patch('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'update']);
 

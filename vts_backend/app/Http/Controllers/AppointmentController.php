@@ -6,11 +6,14 @@ use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use App\Models\Hospital;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
+    use HttpResponses;
+
     public function index()
     {
         return AppointmentResource::collection(
@@ -85,9 +88,14 @@ class AppointmentController extends Controller
         return new AppointmentResource($appointment);
     }
 
-    public function destroy(string $id)
+    public function destroy(Appointment $appointment)
     {
-        //
+        if ($appointment->status === 'Completed'){
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
+
+        $appointment->delete();
+        return $this->success('', 'Delete Successful');
     }
 
     public function getAppointmentSlots(Request $request)
@@ -114,5 +122,22 @@ class AppointmentController extends Controller
             $id++;
         }
         return response()->json(['data' => $slotsRemaining]);
+    }
+
+    public function indexSearch(Request $request)
+    {
+        $date = $request->input('date');
+        return AppointmentResource::collection(
+            Appointment::where('date', $date)->orderBy('date', 'desc')->get()
+        );
+    }
+
+    public function updateStatuses(Request $request)
+    {
+        $date = $request->input('date');
+        $status = $request->input('status');
+        Appointment::where('date', $date)->update(['status' => $status]);
+
+        return response()->json(['status' => 'Status Update Successful']);
     }
 }

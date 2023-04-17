@@ -95,7 +95,7 @@ export default function DependentForm(){
                     </div>
                     <div className="w-full my-5">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Date of Birth"  id="dob" name="dob" disableFuture onChange={(date) => setValues({...values, dob: date})} required/>
+                            <TextField type='date' label="Date of Birth"  id="dob" name="dob" disableFuture onChange={(e) => setValues({...values, dob: e.target.value})} required/>
                         </LocalizationProvider>
                     </div>
                     <div>

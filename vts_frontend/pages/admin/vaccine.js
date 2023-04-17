@@ -1,5 +1,4 @@
 import Head from "next/head";
-import {FolderIcon, UserPlusIcon} from "@heroicons/react/24/solid";
 import PageHeader from "@/components/PageHeader";
 import {Box, Tab} from "@mui/material";
 import {TabContext, TabList, TabPanel} from "@mui/lab";

@@ -21,7 +21,7 @@ import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import moment from "moment";
 import DependentFormEdit from "@/components/dependents/DependentFormEdit";
 import QRCode from "qrcode.react";
-import QRCodeGenerate from "@/components/QRCodeGenerate";
+import QRCodeGenerate from "@/components/qrcode/QRCodeGenerate";
 
 
 export default function PatientDependent() {
@@ -119,7 +119,7 @@ export default function PatientDependent() {
                     <Toolbar className='mb-2 flex justify-between'>
                         <TextField
                             variant='outlined'
-                            label='Search Dependents'
+                            label='Search by first name'
                             name='search'
                             className='bg-white'
                             onChange={handleSearch}

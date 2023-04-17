@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreAdminRequest;
 use App\Models\User;
+use App\Notifications\NewAdminNotification;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,9 @@ class AuthAdminController extends Controller
             'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
+
+        $password = $request->password;
+        $admin->notify(new NewAdminNotification($password));
 
         return $this->success([
             'user' => $admin,
@@ -96,5 +100,15 @@ class AuthAdminController extends Controller
             'data' => $data,
             'patient' => $data->patient,
         ]);
+    }
+
+    public function destroy(User $admin)
+    {
+        if (Auth::user()->id == $admin->id){
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
+
+        $admin->delete();
+        return $this->success('', 'Delete Successful');
     }
 }

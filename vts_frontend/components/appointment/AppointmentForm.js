@@ -193,8 +193,8 @@ export default function AppointmentForm(){
         setSelectedDependent(event.target.value);
     };
 
-    const handleDateChange = (date) => {
-        setDate(date);
+    const handleDateChange = (event) => {
+        setDate(event.target.value);
     };
 
     const handleDoseChange = (event) => {
@@ -433,7 +433,7 @@ export default function AppointmentForm(){
                     </div>
                     <div className="w-full my-5">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Date"  id="dob" name="data" disablePast onChange={handleDateChange} required/>
+                            <TextField type='date' label="Date"  id="dob" name="data" disablePast onChange={handleDateChange} required/>
                         </LocalizationProvider>
                     </div>
                     <div className="w-full my-5">
@@ -463,7 +463,7 @@ export default function AppointmentForm(){
                 </Grid>
             </Grid>
             <div>
-                {data1 != null  && <h1 className="success-msg">{data1.message}</h1>}
+                {data1 != null  && <h1 className="success-msg">{data1.status}</h1>}
             </div>
         </form>
     )

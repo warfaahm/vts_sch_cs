@@ -21,6 +21,7 @@ const SideBar = forwardRef(({ showNav }, ref) => {
                         rel="preload"
                         as='image'
                     />
+                    <div className='font-bold flex justify-center'>Patient</div>
                 </picture>
             </div>
             <div className='flex flex-col'>

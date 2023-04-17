@@ -15,6 +15,7 @@ export default function DependentFormEdit(props){
 
     const [values, setValues] =  useState(data);
     const [token, setToken] = useState(null);
+    const [data1, setData1] = useState(null);
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -26,7 +27,6 @@ export default function DependentFormEdit(props){
         try {
             const response = await axios.patch(`http://127.0.0.1:8000/api/user/dependent/${data.id}`,
                 {
-                    dob: moment(values.dob).format('YYYY-MM-DD'),
                     first_name: values.first_name,
                     last_name: values.last_name,
                     birth_cert_no: values.birth_cert_no,
@@ -42,6 +42,7 @@ export default function DependentFormEdit(props){
                 }
             );
             console.log(response.data);
+            setData1(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -82,11 +83,6 @@ export default function DependentFormEdit(props){
                             </RadioGroup>
                         </FormControl>
                     </div>
-                    <div className="w-full my-5">
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label="Date of Birth"  id="dob" name="dob" disableFuture onChange={(date) => setValues({...values, dob: date})} required/>
-                        </LocalizationProvider>
-                    </div>
                     <div>
                         <button type='submit' className='text-white bg-blue-500 rounded-md py-3 px-5 hover:bg-blue-700 mr-3' >Submit</button>
                         <button type='reset' value='Reset' className='text-black bg-gray-400 rounded-md py-3 px-5 hover:bg-gray-600 hover:text-white'>Reset</button>
@@ -94,7 +90,7 @@ export default function DependentFormEdit(props){
                 </Grid>
             </Grid>
             <div>
-                {data != null  && <h1 className="success-msg">{data.status}</h1>}
+                {data1 != null  && <h1 className="success-msg">{data1.status}</h1>}
             </div>
         </form>
     )

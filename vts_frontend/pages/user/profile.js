@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import moment from "moment/moment";
 import Popup from "@/components/Popup";
-import QRCodeGenerate from "@/components/QRCodeGenerate";
+import QRCodeGenerate from "@/components/qrcode/QRCodeGenerate";
 import ProfileUser from "@/components/profile/ProfileUser";
 
 

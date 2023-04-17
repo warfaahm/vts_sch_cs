@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public function hospital(): BelongsTo
     {
-        return $this->belongsTo(Patient::class, 'hospital_id');
+        return $this->belongsTo(Hospital::class, 'hospital_id');
     }
 }

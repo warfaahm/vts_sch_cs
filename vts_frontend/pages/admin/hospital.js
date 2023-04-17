@@ -18,7 +18,7 @@ import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import Popup from "@/components/Popup";
 import DependentForm from "@/components/dependents/DependentForm";
 import DependentFormEdit from "@/components/dependents/DependentFormEdit";
-import QRCodeGenerate from "@/components/QRCodeGenerate";
+import QRCodeGenerate from "@/components/qrcode/QRCodeGenerate";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import HospitalForm from "@/components/hospital/HospitalForm";

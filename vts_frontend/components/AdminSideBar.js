@@ -28,6 +28,7 @@ const AdminSideBar = forwardRef(({ showNav }, ref) => {
                         rel="preload"
                         as='image'
                     />
+                    <div className='font-bold flex justify-center'>Admin</div>
                 </picture>
             </div>
             <div className='flex flex-col'>

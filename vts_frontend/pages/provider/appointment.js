@@ -1,5 +1,7 @@
 import Head from "next/head";
 import PageHeader from "@/components/PageHeader";
+import {CalendarIcon} from "@heroicons/react/24/solid";
+import AppointmentHospital from "@/components/appointment/AppointmentHospital";
 
 
 export default function AppointmentProvider(){
@@ -10,7 +12,14 @@ export default function AppointmentProvider(){
                 <title>Dashboard - Appointment | VTS</title>
             </Head>
             <main>
-                <div>P Appointment</div>
+                <PageHeader
+                    icon ={<CalendarIcon className='page-header'/>}
+                    title="Appointment"
+                    description = "View and Update Appointments"
+                />
+                <div>
+                    <AppointmentHospital/>
+                </div>
             </main>
         </>
     )

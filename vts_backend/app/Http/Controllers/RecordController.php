@@ -73,7 +73,10 @@ class RecordController extends Controller
             'vaccine_id' => $request->vaccine_id,
         ]);
 
-        return new RecordResource($record);
+        return response()->json([
+            'message' => 'Record added successfully',
+            'data' => $record,
+        ]);
     }
 
     public function show(Record $record)
@@ -120,11 +123,12 @@ class RecordController extends Controller
         $patient = Patient::where('nat_id_no', $request->nat_id_no)->whereHas('user', function ($query) use ($request) {
             $query->where('last_name', $request->last_name);
         })->first();
-        $record = Record::where('patient_id', $patient->id)->get();
+        $record = Record::where('patient_id', $patient->id)->orderBy('date', 'desc')->get();
         $data = RecordResource::collection($record);
         return response()->json([
             'message' => 'Request was successfull',
             'patient' => $patient,
+            'patients' => $patient->user,
             'records' => $data,
         ]);
     }
@@ -134,11 +138,13 @@ class RecordController extends Controller
         $request->validated($request->all());
 
         $patient = Dependent::where('birth_cert_no', $request->birth_cert_no)->where('last_name', $request->last_name)->first();
-        $record = Record::where('dependent_id', $patient->id)->get();
+        $record = Record::where('dependent_id', $patient->id)->orderBy('date', 'desc')->get();
         $data = RecordResource::collection($record);
         return response()->json([
             'message' => 'Request was successfull',
             'patient' => $patient,
+            'parent' => $patient->patient,
+            'parents' => $patient->patient->user,
             'records' => $data,
         ]);
     }

@@ -6,6 +6,7 @@ use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreProviderRequest;
 use App\Http\Requests\StoreProviderRequest1;
 use App\Http\Resources\ProviderResource;
+use App\Models\Hospital;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -99,7 +100,7 @@ class AuthProviderController extends Controller
 
     public function destroy(User $provider)
     {
-        if (Auth::user()->hospital_id !== $provider->hospital_id && $provider->role == 'staff_admin' && Auth::user()->id == $provider->id){
+        if (Auth::user()->hospital_id !== $provider->hospital_id && Auth::user()->id == $provider->id){
             return $this->error('', 'You are not authorized to make this request', 403);
         }
 
@@ -143,12 +144,13 @@ class AuthProviderController extends Controller
 
     public function profile()
     {
-        $data = User::where('id', Auth::user()->id);
+        $data = User::where('id', Auth::user()->id)->first();
+        $hospital = Hospital::where('id', Auth::user()->hospital_id)->first();
 
         return response()->json([
             'success' => true,
             'data' => $data,
-            'hospital' => $data->hospital,
+            'hospital' => $hospital,
         ]);
     }
 
@@ -160,7 +162,7 @@ class AuthProviderController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Profile Update Successfully',
+            'message' => 'Profile Updated Successfully',
             'data' => $data,
         ]);
     }
