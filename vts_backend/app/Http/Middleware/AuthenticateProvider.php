@@ -18,7 +18,7 @@ class AuthenticateProvider
     {
         $user = auth()->user();
         if (!$user || $user->role !== 'staff_admin') {
-            abort(403, 'Unauthorized: Not Admin');
+            abort(403, 'Unauthorized: Not Staff Admin');
         }
 
         return $next($request);
