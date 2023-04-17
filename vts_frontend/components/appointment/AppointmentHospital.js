@@ -23,12 +23,15 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {DateField} from "@mui/x-date-pickers";
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import StatusUpdateForm from "@/components/appointment/StatusUpdateForm";
+import StatusUpdate from "@/components/appointment/StatusUpdate";
 
 
 export default function AppointmentHospital()
 {
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
+    const [openPopup1, setOpenPopup1] = useState(false);
+    const [id, setId] = useState(null);
 
     const [searchTerm, setSearchTerm] = useState('');
     const [date, setDate] = useState(null);
@@ -83,6 +86,10 @@ export default function AppointmentHospital()
     const handleDateChange = (event) => {
         setDate(event.target.value);
     };
+    const handleEditClick = async (id) => {
+        setId(id);
+        setOpenPopup1(true);
+    };
 
     return (
         <>
@@ -115,7 +122,7 @@ export default function AppointmentHospital()
                         }}
                     />
                     <div className=''>
-                        <button className='border border-blue-700 text-blue-900 rounded py-2 px-2 hover:bg-blue-100  flex' onClick={()=>setOpenPopup(true)}><PencilSquareIcon className='w-6 h-6'/>Update Statuses</button>
+                        <button className='border border-blue-700 text-blue-900 rounded py-2 px-2 hover:bg-blue-100  flex' onClick={()=>setOpenPopup(true)}><PencilSquareIcon className='w-6 h-6'/>Update by status date</button>
                     </div>
                 </Toolbar>
                 <Paper>
@@ -156,9 +163,6 @@ export default function AppointmentHospital()
                                                     <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
                                                         <PencilSquareIcon className='w-5 h-5'/>
                                                     </button>
-                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4' onClick={() => handleQR(item.last_name, item.birth_cert_no)}>
-                                                        <QrCodeIcon className='w-5 h-5'/>
-                                                    </button>
                                                 </div>
                                             </TableCell>
                                         </TableRow>
@@ -176,6 +180,13 @@ export default function AppointmentHospital()
                     title='Change Status'
                 >
                     <StatusUpdateForm/>
+                </Popup>
+                <Popup
+                    openPopup={openPopup1}
+                    setOpenPopup={setOpenPopup1}
+                    title='Change Status'
+                >
+                    <StatusUpdate id={id}/>
                 </Popup>
             </div>
         </>

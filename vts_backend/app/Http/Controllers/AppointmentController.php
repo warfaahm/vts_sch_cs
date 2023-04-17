@@ -45,7 +45,7 @@ class AppointmentController extends Controller
 
         ]);
 
-        return new AppointmentResource($appointment);
+        return $this->success($appointment, 'Appointment Successful');
     }
 
     public function show(Appointment $appointment)
@@ -73,7 +73,7 @@ class AppointmentController extends Controller
         }
 
         $appointment->update($request->all());
-        return new AppointmentResource($appointment);
+        return response()->json(['status' => 'Status Update Successful']);
     }
 
     public function updateUser(Request $request, Appointment $appointment)

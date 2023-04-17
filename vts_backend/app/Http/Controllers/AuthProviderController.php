@@ -100,7 +100,7 @@ class AuthProviderController extends Controller
 
     public function destroy(User $provider)
     {
-        if (Auth::user()->hospital_id !== $provider->hospital_id && Auth::user()->id == $provider->id){
+        if (Auth::user()->hospital_id !== $provider->hospital_id || Auth::user()->id == $provider->id){
             return $this->error('', 'You are not authorized to make this request', 403);
         }
 

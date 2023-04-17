@@ -249,11 +249,12 @@ export default function AppointmentForm(){
                 vaccine_id: selectedVaccine,
                 time: selectedSlot,
                 status: 'Pending',
+                dependent_id: selectedDependent,
             };
 
-            if (selectedDependent != null) {
-                data.dependent_id = selectedDependent;
-            }
+            // if (selectedDependent != null) {
+            //     data.dependent_id: selectedDependent;
+            // }
             const response = await axios.post('http://127.0.0.1:8000/api/user/appointment', data2,
                 {
                     headers: {
