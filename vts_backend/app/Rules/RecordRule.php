@@ -50,7 +50,7 @@ class RecordRule implements Rule
             return true;
         }
 
-        if ($lastRecord->next_date > $this->date) {
+        if ($lastRecord->next_date >= $this->date) {
             return false;
         }
 

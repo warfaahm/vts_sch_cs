@@ -7,6 +7,7 @@ use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use App\Models\Hospital;
 use App\Traits\HttpResponses;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -139,5 +140,20 @@ class AppointmentController extends Controller
         Appointment::where('date', $date)->update(['status' => $status]);
 
         return response()->json(['status' => 'Status Update Successful']);
+    }
+
+    public function appointmentCount()
+    {
+        $currentDate = Carbon::now()->format('Y-m-d');
+        $count = Appointment::where('hospital_id', Auth::user()->hospital_id)->where('date', $currentDate)->count();
+
+        return response()->json(['count' => $count]);
+    }
+
+    public function appointmentUserCount()
+    {
+        $count = Appointment::where('patient_id', Auth::user()->patient->id)->count();
+
+        return response()->json(['count' => $count]);
     }
 }

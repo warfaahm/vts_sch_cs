@@ -42,6 +42,8 @@ class RecordController extends Controller
 
     public function store(StoreRecordRequest $request)
     {
+        $currentDate = Carbon::now();
+        $formattedDate = $currentDate->format('Y-m-d');
         $request->validated($request->all());
 
         $vaccine = Vaccine::findOrFail($request->vaccine_id);
@@ -147,5 +149,21 @@ class RecordController extends Controller
             'parents' => $patient->patient->user,
             'records' => $data,
         ]);
+    }
+
+    public function recordCount()
+    {
+        $count = Record::where('hospital_id', Auth::user()->hospital_id)->count();
+
+        return response()->json(['count' => $count]);
+    }
+
+    public function recordUserCount()
+    {
+        $count = Record::where('patient_id', Auth::user()->patient->id)->count();
+        $dependentIds = Auth::user()->patient->dependents->pluck('id')->toArray();
+        $count2 = Record::whereIn('dependent_id', $dependentIds)->count();
+
+        return response()->json(['count' => $count+$count2]);
     }
 }

@@ -36,6 +36,9 @@ export default function SearchDependentRecord()
         <div>
             <div>
                 <div>
+                    <h1 className='font-bold'>Search Records</h1>
+                </div>
+                <div>
                     <button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-1 mx-2' onClick={()=>setOpenPopup1(true)}>Use Form</button>
                 </div>
                 <div>
@@ -60,7 +63,7 @@ export default function SearchDependentRecord()
             <Popup
                 openPopup={openPopup1}
                 setOpenPopup={setOpenPopup1}
-                title='Search Record'
+                title='Search Dependent Record'
             >
                 <SearchPatientForm onDataReceived={handleQRCodeData} onClose={handleClose1}/>
             </Popup>

@@ -49,7 +49,7 @@ class DoseNoRule implements Rule
             if (!$previous_record) {
                 return false;
             }
-            if ($previous_record->dose_no == $this->dose_no)
+            if ($previous_record->dose_no === $this->dose_no)
             {
                 return false;
             }

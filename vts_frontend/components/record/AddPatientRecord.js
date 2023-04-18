@@ -13,7 +13,9 @@ export default function AddPatientRecord(props)
     const [vaccines, setVaccines] = useState([]);
     const [selectedVaccine, setSelectedVaccine] = useState('');
     const [dose, setDose] = useState(null);
-    const currentDate = new Date();
+    let currentDate = moment(new Date()).format('YYYY/MM/DD');
+    console.log(currentDate);
+    const [errors, setErrors] = useState(null);
 
     const [token1, setToken1] = useState();
     const [data, setData] = useState();
@@ -61,11 +63,13 @@ export default function AddPatientRecord(props)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setErrors(null);
+        setData(null);
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/staff/record',
                 {
 
-                    date: moment(currentDate.toLocaleDateString()).format('YYYY/MM/DD'),
+                    date: currentDate,
                     vaccine_id: selectedVaccine,
                     dose_no: dose,
                     patient_id: id,
@@ -81,6 +85,7 @@ export default function AddPatientRecord(props)
             setData(response.data);
         } catch (error) {
             console.log(error);
+            setErrors(error);
         }
     };
 
@@ -134,6 +139,9 @@ export default function AddPatientRecord(props)
             </Grid>
             <div>
                 {data != null  && <h1 className="success-msg mt-2">{data.message}</h1>}
+            </div>
+            <div>
+                {errors != null  && <h1 className="error-msg mt-2">{errors.response.data.message}</h1>}
             </div>
         </form>
     )

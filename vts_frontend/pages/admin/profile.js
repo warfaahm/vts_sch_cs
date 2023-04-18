@@ -54,10 +54,10 @@ export default function ProfileAdmin(){
                 <div>
                     <div>
                         <div>
-                            <button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-2 mx-2'>Edit Profile</button>
+                            {/*<button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-2 mx-2'>Edit Profile</button>*/}
                         </div>
                     </div>
-                    <div className='bg-blue-50 p-4 rounded-lg'>
+                    <div className='bg-blue-50 p-4 mt-2 rounded-lg'>
                         <div>
                             <div>
                                 <span className='dialog1'>Name</span>

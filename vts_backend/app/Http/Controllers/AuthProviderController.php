@@ -166,4 +166,11 @@ class AuthProviderController extends Controller
             'data' => $data,
         ]);
     }
+
+    public function accountsCount()
+    {
+        $count = User::where('hospital_id', Auth::user()->hospital_id)->count();
+
+        return response()->json(['count' => $count]);
+    }
 }

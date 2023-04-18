@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\DoseNoRule;
 use App\Rules\RecordRule;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRecordRequest extends FormRequest
@@ -25,6 +26,9 @@ class StoreRecordRequest extends FormRequest
      */
     public function rules()
     {
+        $currentDate = Carbon::now();
+        $formattedDate = $currentDate->format('Y-m-d');
+        $this->date = $formattedDate;
         return [
             'date' => ['required', 'date', new RecordRule($this->patient_id, $this->dependent_id, $this->vaccine_id, $this->dose_no, $this->date)],
             'dose_no' => ['required', new DoseNoRule($this->patient_id, $this->dependent_id, $this->vaccine_id, $this->dose_no)],

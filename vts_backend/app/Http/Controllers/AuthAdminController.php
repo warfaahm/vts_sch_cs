@@ -111,4 +111,10 @@ class AuthAdminController extends Controller
         $admin->delete();
         return $this->success('', 'Delete Successful');
     }
+
+    public function userCount()
+    {
+        $count = User::count();
+        return response()->json(['count' => $count]);
+    }
 }

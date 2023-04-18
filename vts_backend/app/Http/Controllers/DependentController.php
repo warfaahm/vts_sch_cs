@@ -62,4 +62,11 @@ class DependentController extends Controller
         $data =  new DependentResource($dependent);
         return $this->success($data);
     }
+
+    public function dependentCount()
+    {
+        $count = Dependent::where('patient_id', Auth::user()->patient->id)->count();
+
+        return response()->json(['count' => $count]);
+    }
 }

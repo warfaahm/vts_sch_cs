@@ -54,4 +54,10 @@ class VaccineController extends Controller
 
         return $this->success($data);
     }
+
+    public function vaccineCount()
+    {
+        $count = Vaccine::count();
+        return response()->json(['count' => $count]);
+    }
 }

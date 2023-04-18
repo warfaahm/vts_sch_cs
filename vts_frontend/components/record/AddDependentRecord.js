@@ -14,6 +14,7 @@ export default function AddDependentRecord(props)
     const [selectedVaccine, setSelectedVaccine] = useState('');
     const [dose, setDose] = useState(null);
     const currentDate = new Date();
+    const [errors, setErrors] = useState(null);
 
     const [token1, setToken1] = useState();
     const [data, setData] = useState();
@@ -26,6 +27,7 @@ export default function AddDependentRecord(props)
             })
             .catch(error => {
                 console.log(error);
+
             });
     }, []);
 
@@ -61,6 +63,8 @@ export default function AddDependentRecord(props)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setErrors(null);
+        setData(null);
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/staff/record',
                 {
@@ -81,6 +85,7 @@ export default function AddDependentRecord(props)
             setData(response.data);
         } catch (error) {
             console.log(error);
+            setErrors(error);
         }
     };
 
@@ -134,6 +139,9 @@ export default function AddDependentRecord(props)
             </Grid>
             <div>
                 {data != null  && <h1 className="success-msg mt-2">{data.message}</h1>}
+            </div>
+            <div>
+                {errors != null  && <h1 className="error-msg mt-2">{errors.response.data.message}</h1>}
             </div>
         </form>
     )

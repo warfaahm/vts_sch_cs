@@ -47,4 +47,10 @@ class HospitalController extends Controller
         $data =  new HospitalResource($hospital);
         return $this->success($data);
     }
+
+    public function hospitalCount()
+    {
+        $count = Hospital::count();
+        return response()->json(['count' => $count]);
+    }
 }

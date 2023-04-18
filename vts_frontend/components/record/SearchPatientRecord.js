@@ -36,6 +36,9 @@ export default function SearchPatientRecord()
         <div>
             <div>
                 <div>
+                    <h1 className='font-bold'>Search Records</h1>
+                </div>
+                <div>
                     <button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-1 mx-2' onClick={()=>setOpenPopup1(true)}>Use Form</button>
                 </div>
                 <div>

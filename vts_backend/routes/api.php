@@ -49,6 +49,9 @@ Route::prefix('/user')->group(function (){
         Route::get('/dependent/{dependent}/record/{record}', [\App\Http\Controllers\RecordController::class, 'showForDependent']);
         Route::get('/record/{record}', [\App\Http\Controllers\RecordController::class, 'showForPatient']);
 
+        Route::get('/home/dependent', [\App\Http\Controllers\DependentController::class, 'dependentCount']);
+        Route::get('/home/appointment', [\App\Http\Controllers\AppointmentController::class, 'appointmentUserCount']);
+        Route::get('/home/record', [\App\Http\Controllers\RecordController::class, 'recordUserCount']);
     });
 });
 
@@ -87,7 +90,9 @@ Route::prefix('/admin')->group(function (){
         Route::delete('/provider/{provider}', [\App\Http\Controllers\AuthProviderController::class, 'destroy']);
         Route::get('/profile', [\App\Http\Controllers\AuthAdminController::class, 'profile']);
 
-
+        Route::get('/home/hospital', [\App\Http\Controllers\HospitalController::class, 'hospitalCount']);
+        Route::get('/home/vaccine', [\App\Http\Controllers\VaccineController::class, 'vaccineCount']);
+        Route::get('/home/user', [\App\Http\Controllers\AuthAdminController::class, 'userCount']);
     });
 });
 
@@ -117,6 +122,10 @@ Route::prefix('/staff')->group(function (){
         Route::post('/status', [\App\Http\Controllers\AppointmentController::class, 'updateStatuses']);
         Route::get('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'show']);
         Route::patch('/appointment/{appointment}', [\App\Http\Controllers\AppointmentController::class, 'update']);
+
+        Route::get('/home/appointment', [\App\Http\Controllers\AppointmentController::class, 'appointmentCount']);
+        Route::get('/home/record', [\App\Http\Controllers\RecordController::class, 'recordCount']);
+        Route::get('/home/account', [\App\Http\Controllers\AuthProviderController::class, 'accountsCount']);
 
 
 
