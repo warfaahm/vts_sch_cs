@@ -17,6 +17,7 @@ import axios from "axios";
 import DependentForm from "@/components/dependents/DependentForm";
 import Popup from "@/components/Popup";
 import RecordPatientPop from "@/components/record/RecordPatientPop";
+import PatientRecordPDF from "@/components/pdf/PatientRecordPDF";
 
 
 export default function RecordsPatient()
@@ -25,8 +26,18 @@ export default function RecordsPatient()
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
     const [report, setReport] = useState(null);
+    const [profile, setProfile] = useState(null);
 
     const [token1, setToken1] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = event => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredData = data?.filter(item => {
+        return item?.vaccine?.vaccine_name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -80,15 +91,35 @@ export default function RecordsPatient()
         fetchData();
     }, [token]);
 
+    const fetchData1 = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/user/profile/', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log(response.data);
+            setProfile(response.data.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData1();
+    }, [token]);
+
     return (
         <>
             <div className='bg-blue-50 px-4 py-6 rounded-lg mt-4'>
+                <div><PatientRecordPDF data={data} profile={profile}/></div>
                 <Toolbar className='mb-2 flex justify-between'>
                     <TextField
                         variant='outlined'
-                        label='Search Records'
+                        label='Search by vaccine name'
                         name='search'
                         className='bg-white'
+                        onChange={handleSearch}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="start">
@@ -117,7 +148,7 @@ export default function RecordsPatient()
                                         <TableCell colSpan={5} align="center">Loading...</TableCell>
                                     </TableRow>
                                 ) : (
-                                    data.map((item) => (
+                                    filteredData.map((item) => (
                                         <TableRow key={item.id} className="hover:bg-gray-100">
                                             <TableCell>{item.vaccine.vaccine_name}</TableCell>
                                             <TableCell>{moment(item.date).format('DD/MM/YYYY')}</TableCell>

@@ -27,6 +27,15 @@ export default function RecordsDependent()
     const [report, setReport] = useState(null);
 
     const [token1, setToken1] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = event => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredData = data?.filter(item => {
+        return item?.vaccine?.vaccine_name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -86,9 +95,10 @@ export default function RecordsDependent()
                 <Toolbar className='mb-2 flex justify-between'>
                     <TextField
                         variant='outlined'
-                        label='Search Records'
+                        label='Search by vaccine name'
                         name='search'
                         className='bg-white'
+                        onChange={handleSearch}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="start">
@@ -118,7 +128,7 @@ export default function RecordsDependent()
                                         <TableCell colSpan={5} align="center">Loading...</TableCell>
                                     </TableRow>
                                 ) : (
-                                    data.map((item) => (
+                                    filteredData.map((item) => (
                                         <TableRow key={item.id} className="hover:bg-gray-100">
                                             <TableCell>{item.dependent.first_name+ '  '+item.dependent.last_name}</TableCell>
                                             <TableCell>{item.vaccine.vaccine_name}</TableCell>
