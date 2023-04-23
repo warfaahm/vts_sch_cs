@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google'
 import PageHeader from "@/components/PageHeader";
 import {HomeIcon} from "@heroicons/react/24/solid";
 import HomeProvider from "@/components/home/HomeProvider";
+import authHOCProvider from "@/components/auth/authHOCProvider";
 
-export default function ProviderHome() {
+const ProviderHome = () => {
     return (
         <>
             <Head>
@@ -23,3 +24,4 @@ export default function ProviderHome() {
         </>
     )
 }
+export default authHOCProvider(ProviderHome);

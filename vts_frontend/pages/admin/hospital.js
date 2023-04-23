@@ -23,9 +23,10 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import HospitalForm from "@/components/hospital/HospitalForm";
 import HospitalFormEdit from "@/components/hospital/HospitalFormEdit";
+import authHOCAdmin from "@/components/auth/authHOCAdmin";
 
 
-export default function Hospital(){
+const Hospital = () =>{
 
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
@@ -183,3 +184,4 @@ export default function Hospital(){
         </>
     )
 }
+export default authHOCAdmin(Hospital);

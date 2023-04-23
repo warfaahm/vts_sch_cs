@@ -8,9 +8,10 @@ import {MdOutlineVaccines} from "react-icons/md";
 import {useState} from "react";
 import Disease from "@/components/vaccine/Disease";
 import Vaccines from "@/components/vaccine/Vaccine";
+import authHOCAdmin from "@/components/auth/authHOCAdmin";
 
 
-export default function Vaccine(){
+const Vaccine = () =>{
 
     const [value, setValue] = useState('1');
 
@@ -47,3 +48,4 @@ export default function Vaccine(){
         </>
     )
 }
+export default authHOCAdmin(Vaccine);

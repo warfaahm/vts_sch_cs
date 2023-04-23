@@ -3,9 +3,10 @@ import PageHeader from "@/components/PageHeader";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {UserCircleIcon} from "@heroicons/react/24/solid";
+import authHOCProvider from "@/components/auth/authHOCProvider";
 
 
-export default function ProfileProvider(){
+const ProfileProvider = () =>{
 
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
@@ -87,3 +88,5 @@ export default function ProfileProvider(){
         </>
     )
 }
+
+export default authHOCProvider(ProfileProvider);

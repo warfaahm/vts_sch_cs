@@ -6,9 +6,10 @@ import {TabContext, TabList, TabPanel} from "@mui/lab";
 import {useState} from "react";
 import RecordsPatient from "@/components/record/RecordsPatient";
 import RecordsDependent from "@/components/record/RecordsDependent";
+import AuthHOCUser from "@/components/auth/authHOCUser";
 
 
-export default function PatientRecord(){
+const PatientRecord = () =>{
 
     const [value, setValue] = useState('1');
 
@@ -45,3 +46,5 @@ export default function PatientRecord(){
         </>
     )
 }
+export default AuthHOCUser(PatientRecord);
+

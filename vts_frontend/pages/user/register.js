@@ -20,7 +20,7 @@ export default function Register(){
     const [id_no, setId] = useState('');
     const [phone_no, setPhone] = useState('');
     const [gender, setGender] = useState('');
-    const [dob, setDob] = useState('2000/08/08');
+    const [dob, setDob] = useState(null);
     const [allergy, setAllergy] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -79,8 +79,8 @@ export default function Register(){
         setGender(event.target.value);
     };
 
-    const handleDobChange = (date) => {
-        setDob(date);
+    const handleDobChange = (event) => {
+        setDob(event.target.value);
     };
 
     const handleAllergyChange = (event) => {
@@ -147,7 +147,8 @@ export default function Register(){
 
                                 <div className="w-full my-5">
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker label="Date of Birth"  id="dob" name="dob" format="YYYY-MM-DD" disableFuture error={error?.errors?.dob !== undefined} helperText={error?.errors?.dob} className="w-full" onChange={handleDobChange} required/>
+                                        <label>Date of Birth</label>
+                                        <TextField type='date' label="Date of Birth"  id="dob" name="dob" disableFuture error={error?.errors?.dob !== undefined} helperText={error?.errors?.dob} className="w-full" onChange={handleDobChange} required/>
                                     </LocalizationProvider>
                                 </div>
 

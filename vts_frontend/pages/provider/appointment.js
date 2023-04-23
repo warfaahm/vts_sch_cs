@@ -2,9 +2,10 @@ import Head from "next/head";
 import PageHeader from "@/components/PageHeader";
 import {CalendarIcon} from "@heroicons/react/24/solid";
 import AppointmentHospital from "@/components/appointment/AppointmentHospital";
+import authHOCProvider from "@/components/auth/authHOCProvider";
 
 
-export default function AppointmentProvider(){
+const AppointmentProvider = () =>{
 
     return (
         <>
@@ -24,3 +25,4 @@ export default function AppointmentProvider(){
         </>
     )
 }
+export default authHOCProvider(AppointmentProvider);

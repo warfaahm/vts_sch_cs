@@ -16,7 +16,7 @@ class DependentController extends Controller
     public function index()
     {
         $data = DependentResource::collection(
-            Dependent::where('patient_id', Auth::user()->id)->get()
+            Dependent::where('patient_id', Auth::user()->patient->id)->get()
         );
 
         return $this->success($data);

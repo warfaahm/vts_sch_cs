@@ -10,11 +10,35 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import {BsHospital} from "react-icons/bs";
 import {MdOutlineManageAccounts, MdOutlineVaccines} from "react-icons/md";
+import axios from "axios";
 
 
 
 const AdminSideBar = forwardRef(({ showNav }, ref) => {
     const router = useRouter();
+
+    const handleLogout = async () => {
+        try {
+            // Get the user token from local storage
+            const token = window.localStorage.getItem('adminToken');
+
+            // Make a POST request to the logout API endpoint with the token in the Authorization header
+            await axios.post('http://127.0.0.1:8000/api/admin/logout', null, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            // Remove user token from local storage
+            window.localStorage.removeItem('adminToken');
+
+            // Redirect to login page or perform any other actions
+            // that you want to do after successful logout
+            router.push('/admin/login'); // Replace '/login' with the desired path
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div ref={ref} className='fixed w-56 h-full bg-gray-50 border-r-2 shadow-sm'>
@@ -104,7 +128,7 @@ const AdminSideBar = forwardRef(({ showNav }, ref) => {
                         </div>
                     </div>
                 </Link>
-                <button className='pl-6 py-3 mx-5 mt-10 rounded text-center cursor-pointer mb-3 border border-blue-600 flex items-center transition-colors text-gray-700 hover:bg-blue-500 hover:text-white'>
+                <button className='pl-6 py-3 mx-5 mt-10 rounded text-center cursor-pointer mb-3 border border-blue-600 flex items-center transition-colors text-gray-700 hover:bg-blue-500 hover:text-white' onClick={handleLogout}>
                     <div className='mr-2'>
                         <ArrowRightOnRectangleIcon className='h-5 w-5'/>
                     </div>

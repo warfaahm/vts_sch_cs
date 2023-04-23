@@ -22,9 +22,10 @@ import moment from "moment";
 import DependentFormEdit from "@/components/dependents/DependentFormEdit";
 import QRCode from "qrcode.react";
 import QRCodeGenerate from "@/components/qrcode/QRCodeGenerate";
+import AuthHOCUser from "@/components/auth/authHOCUser";
 
 
-export default function PatientDependent() {
+const PatientDependent = () =>{
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
     const [openPopup1, setOpenPopup1] = useState(false);
@@ -207,3 +208,5 @@ export default function PatientDependent() {
         </>
     )
 }
+
+export default AuthHOCUser(PatientDependent);

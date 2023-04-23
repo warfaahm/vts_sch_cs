@@ -6,9 +6,10 @@ import {Box, Tab} from "@mui/material";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import AppointmentPatient from "@/components/appointment/AppointmentPatient";
 import {useState} from "react";
+import AuthHOCUser from "@/components/auth/authHOCUser";
 
 
-export default function PatientAppointment(){
+const PatientAppointment = () =>{
 
     const [value, setValue] = useState('1');
 
@@ -34,3 +35,4 @@ export default function PatientAppointment(){
         </>
     )
 }
+export default AuthHOCUser(PatientAppointment);

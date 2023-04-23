@@ -9,9 +9,10 @@ import Disease from "@/components/vaccine/Disease";
 import Vaccines from "@/components/vaccine/Vaccine";
 import AdminAccounts from "@/components/accounts/AdminAccounts";
 import HospitalAccounts from "@/components/accounts/HospitalAccounts";
+import authHOCAdmin from "@/components/auth/authHOCAdmin";
 
 
-export default function Accounts(){
+const Accounts = () =>{
 
     const [value, setValue] = useState('1');
 
@@ -48,3 +49,4 @@ export default function Accounts(){
         </>
     )
 }
+export default authHOCAdmin(Accounts);

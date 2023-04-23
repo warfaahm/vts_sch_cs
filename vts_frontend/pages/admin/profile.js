@@ -4,9 +4,10 @@ import PageHeader from "@/components/PageHeader";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import moment from "moment";
+import authHOCAdmin from "@/components/auth/authHOCAdmin";
 
 
-export default function ProfileAdmin(){
+const ProfileAdmin = () =>{
 
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
@@ -84,3 +85,4 @@ export default function ProfileAdmin(){
         </>
     )
 }
+export default authHOCAdmin(ProfileAdmin);

@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google'
 import PageHeader from "@/components/PageHeader";
 import {HomeIcon} from "@heroicons/react/24/solid";
 import HomeAdmin from "@/components/home/HomeAdmin";
+import authHOCAdmin from "@/components/auth/authHOCAdmin";
 
-export default function AdminHome() {
+const AdminHome = () => {
     return (
         <>
             <Head>
@@ -23,3 +24,4 @@ export default function AdminHome() {
         </>
     )
 }
+export default authHOCAdmin(AdminHome);

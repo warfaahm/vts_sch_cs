@@ -25,6 +25,7 @@ export default function DependentForm(){
     const [values, setValues] =  useState(initialValues);
     const [token, setToken] = useState(null);
     const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
@@ -55,6 +56,7 @@ export default function DependentForm(){
             setData(response.data);
         } catch (error) {
             console.log(error);
+            setError(error.response.data)
         }
     };
 
@@ -68,21 +70,21 @@ export default function DependentForm(){
             <Grid container>
                 <Grid item xs={6}>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='First name' name='first_name' id='first_name' onChange={(e) => setValues({...values, first_name: e.target.value})} required/>
+                        <TextField variant='outlined' label='First name' name='first_name' id='first_name' error={error?.errors?.first_name !== undefined} helperText={error?.errors?.first_name} onChange={(e) => setValues({...values, first_name: e.target.value})} required/>
                     </div>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Birth Cert no' name='birth_cert_no' id='birth_cert_no' onChange={(e) => setValues({...values, birth_cert_no: e.target.value})} required/>
+                        <TextField variant='outlined' label='Birth Cert no' name='birth_cert_no' id='birth_cert_no' error={error?.errors?.birth_cert_no !== undefined} helperText={error?.errors?.birth_cert_no} onChange={(e) => setValues({...values, birth_cert_no: e.target.value})} required/>
                     </div>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Allergy' name='allergy' id='allergy' onChange={(e) => setValues({...values, allergy: e.target.value})} />
+                        <TextField variant='outlined' label='Allergy' name='allergy' id='allergy' error={error?.errors?.allergy !== undefined} helperText={error?.errors?.allergy} onChange={(e) => setValues({...values, allergy: e.target.value})} />
                     </div>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Relationship' name='relationship' id='relationship' onChange={(e) => setValues({...values, relationship: e.target.value})} required/>
+                        <TextField variant='outlined' label='Relationship' name='relationship' id='relationship' error={error?.errors?.relationship !== undefined} helperText={error?.errors?.relationship} onChange={(e) => setValues({...values, relationship: e.target.value})} required/>
                     </div>
                 </Grid>
                 <Grid item xs={6}>
                     <div className="w-full my-5">
-                        <TextField variant='outlined' label='Last name' name='last_name' id='last_name' onChange={(e) => setValues({...values, last_name: e.target.value})} required/>
+                        <TextField variant='outlined' label='Last name' name='last_name' id='last_name' error={error?.errors?.last_name !== undefined} helperText={error?.errors?.last_name} onChange={(e) => setValues({...values, last_name: e.target.value})} required/>
                     </div>
                     <div>
                         <FormControl required>
@@ -95,7 +97,7 @@ export default function DependentForm(){
                     </div>
                     <div className="w-full my-5">
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <TextField type='date' label="Date of Birth"  id="dob" name="dob" disableFuture onChange={(e) => setValues({...values, dob: e.target.value})} required/>
+                            <TextField type='date' label="Date of Birth"  id="dob" name="dob" disableFuture error={error?.errors?.dob !== undefined} helperText={error?.errors?.dob} onChange={(e) => setValues({...values, dob: e.target.value})} required/>
                         </LocalizationProvider>
                     </div>
                     <div>

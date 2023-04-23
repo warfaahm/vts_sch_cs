@@ -7,9 +7,10 @@ import moment from "moment/moment";
 import Popup from "@/components/Popup";
 import QRCodeGenerate from "@/components/qrcode/QRCodeGenerate";
 import ProfileUser from "@/components/profile/ProfileUser";
+import AuthHOCUser from "@/components/auth/authHOCUser";
 
 
-export default function PatientProfile(){
+const PatientProfile = () =>{
 
     const [data, setData] = useState(null);
     const [openPopup, setOpenPopup] = useState(false);
@@ -120,3 +121,5 @@ export default function PatientProfile(){
         </>
     )
 }
+export default AuthHOCUser(PatientProfile);
+

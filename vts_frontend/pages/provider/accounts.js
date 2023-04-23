@@ -2,9 +2,9 @@ import Head from "next/head";
 import PageHeader from "@/components/PageHeader";
 import {MdOutlineManageAccounts} from "react-icons/md";
 import ProviderAccountList from "@/components/accounts/ProviderAccountList";
+import authHOCProvider from "@/components/auth/authHOCProvider";
 
-
-export default function ProviderAccounts(){
+const ProviderAccounts = () =>{
 
     return (
         <>
@@ -24,3 +24,4 @@ export default function ProviderAccounts(){
         </>
     )
 }
+export default authHOCProvider(ProviderAccounts);

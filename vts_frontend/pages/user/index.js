@@ -3,8 +3,9 @@ import { Inter } from 'next/font/google'
 import PageHeader from "@/components/PageHeader";
 import {HomeIcon} from "@heroicons/react/24/solid";
 import HomeUser from "@/components/home/HomeUser";
+import AuthHOCUser from "@/components/auth/authHOCUser";
 
-export default function PatientHome() {
+const PatientHome = () => {
     return (
         <>
             <Head>
@@ -23,3 +24,4 @@ export default function PatientHome() {
         </>
     )
 }
+export default AuthHOCUser(PatientHome);

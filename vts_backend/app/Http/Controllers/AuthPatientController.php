@@ -100,4 +100,21 @@ class AuthPatientController extends Controller
             'data' => $data,
         ]);
     }
+
+    public function checkAuthentication()
+    {
+        try {
+            // Check if user is authenticated
+            if (Auth::check()) {
+                // Return a successful response indicating that the user is authenticated
+                return response()->json(['authenticated' => true], 200);
+            } else {
+                // Return an unsuccessful response indicating that the user is not authenticated
+                return response()->json(['authenticated' => false], 401);
+            }
+        } catch (\Exception $e) {
+            // Return an error response if an exception occurs
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }

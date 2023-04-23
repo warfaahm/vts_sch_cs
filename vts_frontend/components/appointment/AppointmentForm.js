@@ -57,7 +57,7 @@ export default function AppointmentForm(){
     const [selectedDisease, setSelectedDisease] = useState('');
     const [vaccines, setVaccines] = useState([]);
     const [selectedVaccine, setSelectedVaccine] = useState('');
-    const [selectedDependent, setSelectedDependent] = useState(null);
+    const [selectedDependent, setSelectedDependent] = useState();
 
     const [slots, setSlots] = useState([]);
     const [selectedSlot, setSelectedSlot] = useState('');
@@ -282,7 +282,7 @@ export default function AppointmentForm(){
         setShowTextField(event.target.value === 'kids');
         if (event.target.value === 'Self')
         {
-            setSelectedDependent(null);
+            setSelectedDependent();
         }
     };
 
@@ -325,7 +325,7 @@ export default function AppointmentForm(){
                     <div className="w-full my-5">
                         <FormControl className='w-full'>
                             <InputLabel>Select County</InputLabel>
-                            <Select value={selectedCounty} onChange={handleCountyChange}>
+                            <Select value={selectedCounty} onChange={handleCountyChange} required>
 
                                 {(!counties || !Array.isArray(counties)) ? (
                                     <MenuItem>No County</MenuItem>
@@ -343,7 +343,7 @@ export default function AppointmentForm(){
                     <div className="w-full my-5">
                         <FormControl className='w-full'>
                             <InputLabel>Select Sub County</InputLabel>
-                            <Select value={selectedSubcounty} onChange={handleSubcountyChange} disabled={!selectedCounty}>
+                            <Select value={selectedSubcounty} onChange={handleSubcountyChange} disabled={!selectedCounty} required>
 
                                 {(!subcounties || !Array.isArray(subcounties)) ? (
                                     <MenuItem>No Sub County</MenuItem>
@@ -361,7 +361,7 @@ export default function AppointmentForm(){
                     <div className="w-full my-5">
                         <FormControl className='w-full'>
                             <InputLabel>Select Ward</InputLabel>
-                            <Select value={selectedWard} onChange={handleWardChange} disabled={!selectedSubcounty}>
+                            <Select value={selectedWard} onChange={handleWardChange} disabled={!selectedSubcounty} required>
 
                                 {(!wards || !Array.isArray(wards)) ? (
                                     <MenuItem>No Ward</MenuItem>
@@ -380,7 +380,7 @@ export default function AppointmentForm(){
                     <div className="w-full my-5">
                         <FormControl className='w-full'>
                             <InputLabel>Select Hospital</InputLabel>
-                            <Select value={selectedHospital} onChange={handleHospitalChange} disabled={!selectedWard}>
+                            <Select value={selectedHospital} onChange={handleHospitalChange} disabled={!selectedWard} required>
 
                                 {(!hospitals || !Array.isArray(hospitals)) ? (
                                     <MenuItem>No Hospitals</MenuItem>
@@ -397,7 +397,7 @@ export default function AppointmentForm(){
                     <div className="w-full my-5">
                         <FormControl className='w-full'>
                             <InputLabel>Select Disease for Vaccination</InputLabel>
-                            <Select value={selectedDisease} onChange={handleDiseaseChange}>
+                            <Select value={selectedDisease} onChange={handleDiseaseChange} required>
 
                                 {(!diseases || !Array.isArray(diseases)) ? (
                                     <MenuItem>No Disease</MenuItem>
@@ -415,7 +415,7 @@ export default function AppointmentForm(){
                     <div>
                         <FormControl className='w-full'>
                             <InputLabel>Select Vaccine</InputLabel>
-                            <Select value={selectedVaccine} onChange={handleVaccineChange} disabled={!selectedDisease}>
+                            <Select value={selectedVaccine} onChange={handleVaccineChange} disabled={!selectedDisease} required>
 
                                 {(!vaccines || !Array.isArray(vaccines)) ? (
                                     <MenuItem>No Vaccine</MenuItem>
@@ -441,7 +441,7 @@ export default function AppointmentForm(){
                         <div className="w-full my-5">
                             <FormControl className='w-full'>
                                 <InputLabel>Select Time Slot for Vaccination</InputLabel>
-                                <Select value={selectedSlot} onChange={handleSlotChange}>
+                                <Select value={selectedSlot} onChange={handleSlotChange} required>
 
                                     {(!slots || !Array.isArray(slots)) ? (
                                         <MenuItem>No Slots</MenuItem>

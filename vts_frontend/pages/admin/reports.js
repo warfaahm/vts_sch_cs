@@ -2,9 +2,10 @@ import Head from "next/head";
 import PageHeader from "@/components/PageHeader";
 import {FolderIcon} from "@heroicons/react/24/solid";
 import AdminReports from "@/components/reports/AdminReports";
+import authHOCAdmin from "@/components/auth/authHOCAdmin";
 
 
-export default function ReportsAdmin(){
+const ReportsAdmin = () =>{
 
     return (
         <>
@@ -22,3 +23,4 @@ export default function ReportsAdmin(){
         </>
     )
 }
+export default authHOCAdmin(ReportsAdmin);

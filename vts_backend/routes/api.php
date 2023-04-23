@@ -28,6 +28,7 @@ Route::prefix('/user')->group(function (){
         Route::post('/logout', [\App\Http\Controllers\AuthPatientController::class, 'logout']);
         Route::get('/profile', [\App\Http\Controllers\AuthPatientController::class, 'profile']);
         Route::patch('/profile/update', [\App\Http\Controllers\AuthPatientController::class, 'updateProfile']);
+        Route::get('/auth/check', [\App\Http\Controllers\AuthPatientController::class, 'checkAuthentication']);
 
         Route::post('/county', [\App\Http\Controllers\CountyController::class, 'addCounty']);
         Route::get('/county/{id}', [\App\Http\Controllers\CountyController::class, 'viewCounty']);
@@ -63,6 +64,7 @@ Route::prefix('/admin')->group(function (){
     Route::middleware(['auth:sanctum', 'auth.admin'])->group(function (){
 
         Route::post('/logout', [\App\Http\Controllers\AuthAdminController::class, 'logout']);
+        Route::get('/auth/check', [\App\Http\Controllers\AuthPatientController::class, 'checkAuthentication']);
 
         Route::post('/hospital', [\App\Http\Controllers\HospitalController::class, 'store']);
         Route::get('/hospital', [\App\Http\Controllers\HospitalController::class, 'index']);
@@ -111,6 +113,7 @@ Route::prefix('/staff')->group(function (){
         Route::post('/logout', [\App\Http\Controllers\AuthProviderController::class, 'logout']);
         Route::get('/profile', [\App\Http\Controllers\AuthProviderController::class, 'profile']);
         Route::patch('/profile/update', [\App\Http\Controllers\AuthProviderController::class, 'updateProfile']);
+        Route::get('/auth/check', [\App\Http\Controllers\AuthPatientController::class, 'checkAuthentication']);
 
         Route::post('/provider', [\App\Http\Controllers\AuthProviderController::class, 'registerProvider']);
         Route::get('/provider', [\App\Http\Controllers\AuthProviderController::class, 'indexProvider']);

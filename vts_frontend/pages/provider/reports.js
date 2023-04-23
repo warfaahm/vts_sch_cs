@@ -2,9 +2,10 @@ import Head from "next/head";
 import PageHeader from "@/components/PageHeader";
 import {FolderIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import ProviderReports from "@/components/reports/ProviderReports";
+import authHOCProvider from "@/components/auth/authHOCProvider";
 
 
-export default function ReportsProvider(){
+const ReportsProvider = () =>{
 
     return (
         <>
@@ -22,3 +23,4 @@ export default function ReportsProvider(){
         </>
     )
 }
+export default authHOCProvider(ReportsProvider);

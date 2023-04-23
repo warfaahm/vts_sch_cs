@@ -11,9 +11,10 @@ import Disease from "@/components/vaccine/Disease";
 import Vaccines from "@/components/vaccine/Vaccine";
 import SearchPatientRecord from "@/components/record/SearchPatientRecord";
 import SearchDependentRecord from "@/components/record/SearchDependentRecord";
+import authHOCProvider from "@/components/auth/authHOCProvider";
 
 
-export default function PatientRecordP(){
+const PatientRecordP = () =>{
 
     const [value, setValue] = useState('1');
 
@@ -50,3 +51,4 @@ export default function PatientRecordP(){
         </>
     )
 }
+export default authHOCProvider(PatientRecordP);
