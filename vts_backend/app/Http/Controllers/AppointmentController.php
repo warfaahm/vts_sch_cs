@@ -156,4 +156,32 @@ class AppointmentController extends Controller
 
         return response()->json(['count' => $count]);
     }
+
+    public function providerReport(Request $request)
+    {
+        $year = $request->input('year');
+
+        $appointments = Appointment::selectRaw('MONTH(date) as month, status, COUNT(*) as count')
+            ->where('hospital_id', Auth::user()->hospital_id)
+            ->whereYear('date', $year)
+            ->groupBy('month', 'status')
+            ->orderBy('month')
+            ->get()
+            ->groupBy('month')
+            ->map(function ($month) {
+                $data = $month->pluck('count', 'status')->toArray();
+                $data['month'] = $month->first()->month;
+                return $data;
+            })
+            ->values() // Remove the outer keys
+            ->toArray(); // Convert to array
+
+        // Flatten the array of objects
+        $result = [];
+        foreach ($appointments as $monthData) {
+            $result[] = $monthData;
+        }
+
+        return response()->json($result);
+    }
 }

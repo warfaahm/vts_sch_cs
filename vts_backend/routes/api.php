@@ -93,6 +93,12 @@ Route::prefix('/admin')->group(function (){
         Route::get('/home/hospital', [\App\Http\Controllers\HospitalController::class, 'hospitalCount']);
         Route::get('/home/vaccine', [\App\Http\Controllers\VaccineController::class, 'vaccineCount']);
         Route::get('/home/user', [\App\Http\Controllers\AuthAdminController::class, 'userCount']);
+
+        Route::get('/report/gender', [\App\Http\Controllers\RecordController::class, 'genderCountAdmin']);
+        Route::get('/report/gender2', [\App\Http\Controllers\RecordController::class, 'genderCountAdmin2']);
+        Route::post('/report/record', [\App\Http\Controllers\RecordController::class, 'adminVaxReport']);
+        Route::post('/report/record2', [\App\Http\Controllers\RecordController::class, 'adminVaxReport2']);
+        Route::post('/report/record3', [\App\Http\Controllers\RecordController::class, 'adminVaxReport3']);
     });
 });
 
@@ -127,8 +133,11 @@ Route::prefix('/staff')->group(function (){
         Route::get('/home/record', [\App\Http\Controllers\RecordController::class, 'recordCount']);
         Route::get('/home/account', [\App\Http\Controllers\AuthProviderController::class, 'accountsCount']);
 
-
-
+        Route::post('/report/appointment', [\App\Http\Controllers\AppointmentController::class, 'providerReport']);
+        Route::post('/report/record', [\App\Http\Controllers\RecordController::class, 'providerReport']);
+        Route::post('/report/record2', [\App\Http\Controllers\RecordController::class, 'providerReport2']);
+        Route::get('/report/gender', [\App\Http\Controllers\RecordController::class, 'genderCount']);
+        Route::get('/report/gender2', [\App\Http\Controllers\RecordController::class, 'genderCount2']);
     });
 });
 

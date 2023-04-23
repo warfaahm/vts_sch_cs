@@ -17,6 +17,8 @@ export default function App({ Component, pageProps }) {
         return <AppAdmin Component={Component} pageProps={pageProps} />;
     } else if (isProviderRoute) {
         return <AppProvider Component={Component} pageProps={pageProps} />;
+    } else {
+        return <Component {...pageProps}/>;
     }
 
 

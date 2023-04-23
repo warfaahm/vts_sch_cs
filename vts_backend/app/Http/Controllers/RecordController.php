@@ -166,4 +166,139 @@ class RecordController extends Controller
 
         return response()->json(['count' => $count+$count2]);
     }
+
+    public function providerReport(Request $request)
+    {
+        $year = $request->input('year');
+
+        $appointments = Record::selectRaw('MONTH(date) as month, COUNT(*) as count')
+
+            ->whereYear('date', $year)
+            ->where('hospital_id', Auth::user()->hospital_id)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($appointments);
+    }
+
+    public function providerReport2(Request $request)
+    {
+        $year = $request->input('year');
+        $vaccine = $request->input('vaccine_id');
+
+        $record = Record::selectRaw('MONTH(date) as month, COUNT(*) as count')
+
+            ->whereYear('date', $year)
+            ->where('hospital_id', Auth::user()->hospital_id)
+            ->where('vaccine_id', $vaccine)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($record);
+    }
+
+    public function genderCount()
+    {
+        // Retrieve the gender value from the related Patient model and count the records for each gender
+        $appointments = Record::selectRaw('patients.gender as gender, COUNT(*) as count')
+            ->join('patients', 'records.patient_id', '=', 'patients.id')
+            ->where('hospital_id', Auth::user()->hospital_id)
+            ->groupBy('gender')
+            ->orderBy('gender')
+            ->get();
+
+        return response()->json($appointments);
+    }
+
+    public function genderCount2()
+    {
+        // Retrieve the gender value from the related Patient model and count the records for each gender
+        $appointments = Record::selectRaw('dependents.gender as gender, COUNT(*) as count')
+            ->join('dependents', 'records.dependent_id', '=', 'dependents.id')
+            ->where('hospital_id', Auth::user()->hospital_id)
+            ->groupBy('gender')
+            ->orderBy('gender')
+            ->get();
+
+        return response()->json($appointments);
+    }
+
+    public function genderCountAdmin()
+    {
+        // Retrieve the gender value from the related Patient model and count the records for each gender
+        $appointments = Record::selectRaw('patients.gender as gender, COUNT(*) as count')
+            ->join('patients', 'records.patient_id', '=', 'patients.id')
+            ->groupBy('gender')
+            ->orderBy('gender')
+            ->get();
+
+        return response()->json($appointments);
+    }
+
+    public function genderCountAdmin2()
+    {
+        // Retrieve the gender value from the related Patient model and count the records for each gender
+        $appointments = Record::selectRaw('dependents.gender as gender, COUNT(*) as count')
+            ->join('dependents', 'records.dependent_id', '=', 'dependents.id')
+            ->groupBy('gender')
+            ->orderBy('gender')
+            ->get();
+
+        return response()->json($appointments);
+    }
+
+    public function adminVaxReport(Request $request)
+    {
+        $year = $request->input('year');
+
+        $appointments = Record::selectRaw('MONTH(date) as month, COUNT(*) as count')
+
+            ->whereYear('date', $year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($appointments);
+    }
+
+    public function adminVaxReport2(Request $request)
+    {
+        $year = $request->input('year');
+        $vaccine = $request->input('vaccine_id');
+
+        $record = Record::selectRaw('MONTH(date) as month, COUNT(*) as count')
+
+            ->whereYear('date', $year)
+            ->where('vaccine_id', $vaccine)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($record);
+    }
+
+    public function adminVaxReport3(Request $request)
+    {
+        $year = $request->input('year');
+        $vaccine = $request->input('vaccine_id');
+        $countyId = $request->input('county_id'); // Inputted county ID
+
+        $record = Record::selectRaw('MONTH(records.date) as month, COUNT(*) as count')
+            ->join('hospitals', 'hospitals.id', '=', 'records.hospital_id')
+            ->join('wards', 'wards.id', '=', 'hospitals.ward_id')
+            ->join('sub_counties', 'sub_counties.id', '=', 'wards.subCounty_id')
+            ->join('counties', 'counties.id', '=', 'sub_counties.county_id')
+            ->whereYear('records.date', $year)
+            ->where('records.vaccine_id', $vaccine)
+            ->where('counties.id', $countyId) // Filter by county ID
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json($record);
+    }
+
+
 }
