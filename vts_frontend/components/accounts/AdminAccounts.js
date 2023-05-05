@@ -90,8 +90,10 @@ export default function AdminAccounts()
                 }
             });
             console.log(response.data);
+            alert('Delete successful');
         } catch (error) {
             console.error(error);
+            alert('Cannot be deleted');
         }
     };
 

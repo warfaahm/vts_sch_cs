@@ -9,6 +9,7 @@ import {useState} from "react";
 import Disease from "@/components/vaccine/Disease";
 import Vaccines from "@/components/vaccine/Vaccine";
 import authHOCAdmin from "@/components/auth/authHOCAdmin";
+import Batch from "@/components/vaccine/Batch";
 
 
 const Vaccine = () =>{
@@ -27,8 +28,8 @@ const Vaccine = () =>{
             <main>
                 <PageHeader
                     icon ={<MdOutlineVaccines className='page-header'/>}
-                    title="Disease and Vaccine"
-                    description = "Add, View and Edit Diseases and Vaccines"
+                    title="Disease, Batches and Vaccine"
+                    description = "Add, View and Edit Diseases, Batches and Vaccines"
                 />
                 <div className="w-full max-w-5xl px-2 py-4 sm:px-0">
                     <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -37,10 +38,12 @@ const Vaccine = () =>{
                                 <TabList onChange={handleChange}>
                                     <Tab label="Disease" value="1" />
                                     <Tab label="Vaccine" value="2" />
+                                    <Tab label="Batches" value="3" />
                                 </TabList>
                             </Box>
                             <TabPanel value="1"><Disease/></TabPanel>
                             <TabPanel value="2"><Vaccines/></TabPanel>
+                            <TabPanel value="3"><Batch/></TabPanel>
                         </TabContext>
                     </Box>
                 </div>

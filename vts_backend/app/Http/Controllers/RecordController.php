@@ -73,6 +73,7 @@ class RecordController extends Controller
             'patient_id' => $request->patient_id,
             'dependent_id' => $request->dependent_id,
             'vaccine_id' => $request->vaccine_id,
+            'batch_id' => $request->batch_id,
         ]);
 
         return response()->json([

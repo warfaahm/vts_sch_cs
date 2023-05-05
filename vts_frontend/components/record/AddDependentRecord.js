@@ -12,6 +12,8 @@ export default function AddDependentRecord(props)
     const [selectedDisease, setSelectedDisease] = useState('');
     const [vaccines, setVaccines] = useState([]);
     const [selectedVaccine, setSelectedVaccine] = useState('');
+    const [batches, setBatches] = useState([]);
+    const [selectedBatch, setSelectedBatch] = useState('');
     const [dose, setDose] = useState(null);
     const currentDate = new Date();
     const [errors, setErrors] = useState(null);
@@ -27,7 +29,6 @@ export default function AddDependentRecord(props)
             })
             .catch(error => {
                 console.log(error);
-
             });
     }, []);
 
@@ -44,13 +45,32 @@ export default function AddDependentRecord(props)
         }
     }, [selectedDisease]);
 
+    useEffect(() => {
+        if (selectedVaccine) {
+            axios.get(`http://127.0.0.1:8000/api/hospital/batch/${selectedVaccine}`)
+                .then(response => {
+                    const data = response.data.data;
+                    setBatches(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }, [selectedVaccine]);
+
     const handleDiseaseChange = (event) => {
         setSelectedDisease(event.target.value);
         setSelectedVaccine('');
+        setSelectedBatch('');
     };
 
     const handleVaccineChange = (event) => {
         setSelectedVaccine(event.target.value);
+        setSelectedBatch('');
+    };
+
+    const handleBatchChange = (event) => {
+        setSelectedBatch(event.target.value);
     };
     const handleDoseChange = (event) => {
         setDose(event.target.value);
@@ -72,6 +92,7 @@ export default function AddDependentRecord(props)
                     date: moment(currentDate.toLocaleDateString()).format('YYYY/MM/DD'),
                     vaccine_id: selectedVaccine,
                     dose_no: dose,
+                    batch_id: selectedBatch,
                     dependent_id: id,
                 },
                 {
@@ -122,6 +143,23 @@ export default function AddDependentRecord(props)
                                     vaccines.map((vaccine) => (
                                         <MenuItem key={vaccine.id} value={vaccine.id}>
                                             {vaccine.vaccine_name}
+                                        </MenuItem>
+                                    ))
+                                )}
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div className='mb-2'>
+                        <FormControl className='w-full'>
+                            <InputLabel>Select Batch</InputLabel>
+                            <Select value={selectedBatch} onChange={handleBatchChange} disabled={!selectedVaccine} className='w-full'>
+
+                                {(!batches || !Array.isArray(batches)) ? (
+                                    <MenuItem>No Batch</MenuItem>
+                                ) : (
+                                    batches.map((batch) => (
+                                        <MenuItem key={batch.id} value={batch.id}>
+                                            {batch.lot_number}
                                         </MenuItem>
                                     ))
                                 )}

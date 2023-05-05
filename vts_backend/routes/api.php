@@ -81,6 +81,9 @@ Route::prefix('/admin')->group(function (){
         Route::get('/vaccine/{vaccine}', [\App\Http\Controllers\VaccineController::class, 'show']);
         Route::patch('/vaccine/{vaccine}', [\App\Http\Controllers\VaccineController::class, 'update']);
 
+        Route::post('/batch', [\App\Http\Controllers\BatchController::class, 'store']);
+        Route::get('/batch/{id}', [\App\Http\Controllers\BatchController::class, 'show']);
+
         // Route::post('/register', [\App\Http\Controllers\AuthAdminController::class, 'register']);
         Route::get('/admin', [\App\Http\Controllers\AuthAdminController::class, 'index']);
         Route::get('/admin/{id}', [\App\Http\Controllers\AuthAdminController::class, 'show']);
@@ -151,6 +154,7 @@ Route::prefix('/hospital')->group(function (){
     Route::get('/hospital/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'hospital']);
     Route::get('/disease', [\App\Http\Controllers\HospitalSearchController::class, 'disease']);
     Route::get('/vaccine/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'vaccine']);
+    Route::get('/batch/{id}', [\App\Http\Controllers\HospitalSearchController::class, 'batch']);
     Route::post('/appointment/', [\App\Http\Controllers\AppointmentController::class, 'getAppointmentSlots']);
 });
 

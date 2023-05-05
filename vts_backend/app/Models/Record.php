@@ -16,6 +16,7 @@ class Record extends Model
         'dose_no',
         'patient_id',
         'dependent_id',
+        'batch_id',
         'vaccine_id',
         'hospital_id',
     ];
@@ -38,5 +39,10 @@ class Record extends Model
     public function hospital(): BelongsTo
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');
+    }
+
+    public function batch(): BelongsTo
+    {
+        return $this->belongsTo(Batch::class, 'batch_id');
     }
 }

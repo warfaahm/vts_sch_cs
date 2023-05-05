@@ -38,4 +38,9 @@ class Vaccine extends Model
     {
         return $this->hasMany(Appointment::class, 'vaccine_id');
     }
+
+    public function batches(): HasMany
+    {
+        return $this->hasMany(Batch::class, 'vaccine_id');
+    }
 }

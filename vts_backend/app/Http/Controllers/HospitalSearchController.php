@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\County;
 use App\Models\Disease;
 use App\Models\Hospital;
@@ -68,6 +69,21 @@ class HospitalSearchController extends Controller
         return response()->json([
             'success' => true,
             'data' => $vaccine,
+        ]);
+    }
+
+    public function batch($id)
+    {
+        $batch = Batch::whereHas('vaccine', function ($query) use ($id) {
+            $query->where('vaccine_id', $id)
+            ->where('expiry_date', '>=', now());
+        })
+            ->orderBy('lot_number')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $batch,
         ]);
     }
 }

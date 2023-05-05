@@ -36,6 +36,7 @@ class StoreRecordRequest extends FormRequest
             'patient_id' => ['exists:patients,id'],
             'dependent_id' => ['exists:dependents,id'],
             'vaccine_id' => ['required', 'exists:vaccines,id'],
+            'batch_id' => ['required', 'exists:batches,id'],
         ];
     }
 }

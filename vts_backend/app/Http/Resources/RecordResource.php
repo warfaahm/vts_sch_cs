@@ -24,6 +24,7 @@ class RecordResource extends JsonResource
             'patient' => $this->patient,
             'dependent' => $this->dependent,
             'vaccine' => $this->vaccine,
+            'batch' => $this->batch,
             'hospital' => $this->hospital,
         ];
     }

@@ -51,6 +51,7 @@ export default function SearchResultPatient(props)
             console.log(record);
         } catch (error) {
             console.error(error);
+            alert('Error!! Wrong QR Code or form data entered! Click clear to continue.');
         }
     };
 
@@ -104,6 +105,7 @@ export default function SearchResultPatient(props)
                                     <TableCell className="font-bold text-violet-900">Vaccine Name</TableCell>
                                     <TableCell className="font-bold text-violet-900">Date Administered</TableCell>
                                     <TableCell className="font-bold text-violet-900">Dose No</TableCell>
+                                    <TableCell className="font-bold text-violet-900">Lot/Batch No</TableCell>
                                     <TableCell className="font-bold text-violet-900">Next Dose Date</TableCell>
                                     <TableCell className="font-bold text-violet-900">Hospital</TableCell>
                                 </TableRow>
@@ -120,6 +122,7 @@ export default function SearchResultPatient(props)
                                             <TableCell>{item.vaccine.vaccine_name}</TableCell>
                                             <TableCell>{moment(item.date).format('DD/MM/YYYY')}</TableCell>
                                             <TableCell>{item.dose_no}</TableCell>
+                                            <TableCell>{item.batch.lot_number}</TableCell>
                                             <TableCell>{moment(item.next_date).format('DD/MM/YYYY')}</TableCell>
                                             <TableCell>{item.hospital.hospital_name}</TableCell>
                                         </TableRow>
