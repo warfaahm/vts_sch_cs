@@ -4,6 +4,7 @@ import PageHeader from "@/components/PageHeader";
 import {HomeIcon} from "@heroicons/react/24/solid";
 import HomeUser from "@/components/home/HomeUser";
 import AuthHOCUser from "@/components/auth/authHOCUser";
+import HomeUserUpcoming from "@/components/home/HomeUserUpcoming";
 
 const PatientHome = () => {
     return (
@@ -19,6 +20,7 @@ const PatientHome = () => {
                 />
                 <div>
                     <HomeUser/>
+                    <HomeUserUpcoming/>
                 </div>
             </main>
         </>

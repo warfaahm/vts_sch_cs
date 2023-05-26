@@ -47,6 +47,7 @@ Route::prefix('/user')->group(function (){
 
         Route::get('/dependentRecord', [\App\Http\Controllers\RecordController::class, 'indexForDependent']);
         Route::get('/record', [\App\Http\Controllers\RecordController::class, 'indexForPatient']);
+        Route::get('/record1', [\App\Http\Controllers\RecordController::class, 'indexForPatientUpcoming']);
         Route::get('/dependent/{dependent}/record/{record}', [\App\Http\Controllers\RecordController::class, 'showForDependent']);
         Route::get('/record/{record}', [\App\Http\Controllers\RecordController::class, 'showForPatient']);
 
@@ -65,6 +66,7 @@ Route::prefix('/admin')->group(function (){
 
         Route::post('/logout', [\App\Http\Controllers\AuthAdminController::class, 'logout']);
         Route::get('/auth/check', [\App\Http\Controllers\AuthPatientController::class, 'checkAuthentication']);
+        Route::patch('/auth/password', [\App\Http\Controllers\AuthAdminController::class, 'changePassword']);
 
         Route::post('/hospital', [\App\Http\Controllers\HospitalController::class, 'store']);
         Route::get('/hospital', [\App\Http\Controllers\HospitalController::class, 'index']);
@@ -117,6 +119,7 @@ Route::prefix('/staff')->group(function (){
         Route::get('/profile', [\App\Http\Controllers\AuthProviderController::class, 'profile']);
         Route::patch('/profile/update', [\App\Http\Controllers\AuthProviderController::class, 'updateProfile']);
         Route::get('/auth/check', [\App\Http\Controllers\AuthPatientController::class, 'checkAuthentication']);
+        Route::patch('/auth/password', [\App\Http\Controllers\AuthAdminController::class, 'changePassword']);
 
         Route::post('/provider', [\App\Http\Controllers\AuthProviderController::class, 'registerProvider']);
         Route::get('/provider', [\App\Http\Controllers\AuthProviderController::class, 'indexProvider']);

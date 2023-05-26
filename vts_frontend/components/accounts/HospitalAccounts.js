@@ -146,9 +146,6 @@ export default function HospitalAccounts()
                                             <TableCell>{item.role}</TableCell>
                                             <TableCell>
                                                 <div>
-                                                    <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
-                                                        <PencilSquareIcon className='w-5 h-5'/>
-                                                    </button>
                                                     <button className='text-red-800 rounded py-1.5 px-1 bg-red-100 hover:bg-red-300 ml-2' onClick={() => handleDeleteClick(item.id)}>
                                                         <TrashIcon className='w-5 h-5'/>
                                                     </button>

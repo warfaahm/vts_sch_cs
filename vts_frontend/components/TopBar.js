@@ -1,10 +1,11 @@
 import {Fragment, useEffect, useState} from "react";
 import {Bars3CenterLeftIcon, PencilIcon, ChevronDownIcon, CreditCardIcon, Cog8ToothIcon} from "@heroicons/react/24/solid";
-import { BellIcon, CheckIcon } from "@heroicons/react/24/outline";
+import {ArrowRightOnRectangleIcon, BellIcon, CheckIcon, UserCircleIcon} from "@heroicons/react/24/outline";
 import { Menu, Transition, Popover} from "@headlessui/react";
 import Link from 'next/link';
 import Image from "next/image";
 import axios from "axios";
+import {useRouter} from "next/router";
 
 export default function TopBar({ showNav, setShowNav }) {
 
@@ -37,6 +38,31 @@ export default function TopBar({ showNav, setShowNav }) {
     useEffect(() => {
         fetchData();
     }, [token]);
+
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        try {
+            // Get the user token from local storage
+            const token = window.localStorage.getItem('userToken');
+
+            // Make a POST request to the logout API endpoint with the token in the Authorization header
+            await axios.post('http://127.0.0.1:8000/api/user/logout', null, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            // Remove user token from local storage
+            window.localStorage.removeItem('userToken');
+
+            // Redirect to login page or perform any other actions
+            // that you want to do after successful logout
+            router.push('/user/login'); // Replace '/login' with the desired path
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div className={`fixed w-full h-16 flex justify-between items-center bg-gray-50 border-b border-gray-300 transition-all duration-[400ms] ${showNav ? 'pl-56' : ''}`}>
@@ -108,15 +134,15 @@ export default function TopBar({ showNav, setShowNav }) {
                             <div className='p-1'>
                                 <Menu.Item>
                                     <Link href='/user/profile' className='flex hover:bg-blue-600 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center'>
-                                        <PencilIcon className='h-4 w-4 mr-2'/>
+                                        <UserCircleIcon className='h-4 w-4 mr-2'/>
                                         <span>Profile</span>
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item>
-                                    <Link href='#' className='flex hover:bg-blue-600 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center'>
-                                        <CreditCardIcon className='h-4 w-4 mr-2'/>
+                                    <button className='flex hover:bg-blue-600 w-full hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center' onClick={handleLogout}>
+                                        <ArrowRightOnRectangleIcon className='h-4 w-4 mr-2'/>
                                         <span>Logout</span>
-                                    </Link>
+                                    </button>
                                 </Menu.Item>
                             </div>
                         </Menu.Items>

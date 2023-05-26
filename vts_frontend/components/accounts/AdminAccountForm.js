@@ -86,7 +86,7 @@ export default function AdminAccountForm()
                 </div>
             </Grid>
             <div>
-                {data != null  && <h1 className="success-msg mt-2">{data.message}</h1>}
+                {data != null  && <h1 className="success-msg mt-2">{data.data.message}</h1>}
             </div>
         </form>
     )

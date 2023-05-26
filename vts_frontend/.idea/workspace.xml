@@ -5,26 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f84c8050-d1a4-4a3b-9928-c7a5e1ff3dc8" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/components/vaccine/Batch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/vaccine/BatchForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/vaccine/SearchBatch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/HospitalSearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/HospitalSearchController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/home/HomeUserUpcoming.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/profile/ChangePasswordForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/profile/ChangePasswordFormHos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthAdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthProviderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/AuthProviderController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/RecordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Controllers/RecordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Requests/StoreRecordRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Requests/StoreRecordRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Http/Resources/RecordResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Http/Resources/RecordResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Models/Record.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Models/Record.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Models/Vaccine.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Models/Vaccine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vts_backend/database/migrations/2023_03_22_185611_create_records_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vts_backend/app/Notifications/NewAdminNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/app/Notifications/NewAdminNotification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vts_backend/database/migrations/2023_03_22_185644_create_appointments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/database/migrations/2023_03_22_185644_create_appointments_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vts_backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../vts_backend_new" beforeDir="false" afterPath="$PROJECT_DIR$/../vts_backend_new" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TopBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TopBarAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TopBarAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TopBarProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TopBarProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/accounts/AdminAccountForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/accounts/AdminAccountForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/accounts/AdminAccounts.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/accounts/AdminAccounts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/accounts/HospitalAccounts.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/accounts/HospitalAccounts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/record/AddDependentRecord.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/record/AddDependentRecord.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/record/AddPatientRecord.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/record/AddPatientRecord.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/record/SearchResultDependent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/record/SearchResultDependent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/record/SearchResultPatient.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/record/SearchResultPatient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin/vaccine.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/vaccine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/accounts/ProviderAccountList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/accounts/ProviderAccountList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/appointment/AppointmentHospital.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/appointment/AppointmentHospital.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/appointment/StatusUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/appointment/StatusUpdate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/appointment/StatusUpdateForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/appointment/StatusUpdateForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/provider/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/provider/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/provider/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/provider/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/user/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/user/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +125,10 @@
       <workItem from="1682064590252" duration="71161000" />
       <workItem from="1682402100117" duration="1148000" />
       <workItem from="1682424541400" duration="628000" />
-      <workItem from="1683280933063" duration="7767000" />
+      <workItem from="1683280933063" duration="7932000" />
+      <workItem from="1683352140643" duration="68000" />
+      <workItem from="1685041749589" duration="6085000" />
+      <workItem from="1685084257607" duration="12864000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1680183054537</created>
@@ -300,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682263876647</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="first commit">
+      <created>1683288953034</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1683288953034</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

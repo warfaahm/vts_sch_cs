@@ -63,8 +63,8 @@ export default function StatusUpdateForm()
                             <InputLabel>Select Status</InputLabel>
                             <Select label='status' value={status} onChange={handleStatusChange} >
                                 <MenuItem value='Completed'>Completed</MenuItem>
-                                <MenuItem value='Please Reschedule'>Please Reschedule</MenuItem>
-                                <MenuItem value='Cancelled'>Cancelled</MenuItem>
+                                <MenuItem value='Please_Reschedule'>Please Reschedule</MenuItem>
+                                <MenuItem value='No_Show'>No Show</MenuItem>
                                 <MenuItem value='Confirmed'>Confirmed</MenuItem>
                             </Select>
                         </FormControl>

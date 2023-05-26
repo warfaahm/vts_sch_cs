@@ -5,6 +5,8 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import moment from "moment";
 import authHOCAdmin from "@/components/auth/authHOCAdmin";
+import ChangePasswordForm from "@/components/profile/ChangePasswordForm";
+import Popup from "@/components/Popup";
 
 
 const ProfileAdmin = () =>{
@@ -55,7 +57,7 @@ const ProfileAdmin = () =>{
                 <div>
                     <div>
                         <div>
-                            {/*<button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-2 mx-2'>Edit Profile</button>*/}
+                            <button className='border border-blue-700 rounded px-2 py-1 text-blue-800 hover:bg-blue-100 my-2 mx-2' onClick={()=>setOpenPopup(true)}>Change Password</button>
                         </div>
                     </div>
                     <div className='bg-blue-50 p-4 mt-2 rounded-lg'>
@@ -81,6 +83,13 @@ const ProfileAdmin = () =>{
                         </div>
                     </div>
                 </div>
+                <Popup
+                    openPopup={openPopup}
+                    setOpenPopup={setOpenPopup}
+                    title='Change Password Form'
+                >
+                    <ChangePasswordForm/>
+                </Popup>
             </main>
         </>
     )

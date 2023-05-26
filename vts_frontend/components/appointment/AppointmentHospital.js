@@ -122,7 +122,7 @@ export default function AppointmentHospital()
                         }}
                     />
                     <div className=''>
-                        <button className='border border-blue-700 text-blue-900 rounded py-2 px-2 hover:bg-blue-100  flex' onClick={()=>setOpenPopup(true)}><PencilSquareIcon className='w-6 h-6'/>Update by status date</button>
+                        <button className='border border-blue-700 text-blue-900 rounded py-2 px-2 hover:bg-blue-100  flex' onClick={()=>setOpenPopup(true)}><PencilSquareIcon className='w-6 h-6'/>Update status by date</button>
                     </div>
                 </Toolbar>
                 <Paper>

@@ -52,7 +52,7 @@ class NewAdminNotification extends Notification
             ->line('Here is your login information:')
             ->line('Email: ' . $notifiable->email)
             ->line('Password: ' . $this->password)
-            ->action('Login', $url)
+            ->line('Change your password after login.')
             ->line('Thank you for using our application!');
     }
 

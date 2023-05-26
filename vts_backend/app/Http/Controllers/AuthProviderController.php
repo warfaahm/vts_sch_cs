@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProviderRequest1;
 use App\Http\Resources\ProviderResource;
 use App\Models\Hospital;
 use App\Models\User;
+use App\Notifications\NewAdminNotification2;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,9 @@ class AuthProviderController extends Controller
             'hospital_id' => $request->hospital_id,
             'role' => $request->role,
         ]);
+        $hospital = Hospital::find($request->hospital_id);
+        $password = $request->password;
+        $admin->notify(new NewAdminNotification2($password, $hospital->hospital_name));
 
         return $this->success([
             'user' => $admin,
@@ -48,6 +52,9 @@ class AuthProviderController extends Controller
             'role' => $request->role,
             'hospital_id' => Auth::user()->hospital_id,
         ]);
+        $hospital = Hospital::find(Auth::user()->hospital_id);
+        $password = $request->password;
+        $admin->notify(new NewAdminNotification2($password, $hospital->hospital_name));
 
         return $this->success([
             'user' => $provider,

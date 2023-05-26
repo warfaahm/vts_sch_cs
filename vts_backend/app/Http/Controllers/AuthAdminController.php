@@ -117,4 +117,26 @@ class AuthAdminController extends Controller
         $count = User::count();
         return response()->json(['count' => $count]);
     }
+
+    public function changePassword(Request $request)
+    {
+        $user = Auth::user();
+
+// Validate the password change request
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+// Verify the current password
+        if (Hash::check($request->current_password, $user->password)) {
+            // Update the user's password
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return $this->success('', 'Password Change Successful');
+            // Redirect or provide a success message
+        } else {
+            return $this->error('', 'Your current Password is incorrect. Try again.', 403);
+        }
+    }
 }

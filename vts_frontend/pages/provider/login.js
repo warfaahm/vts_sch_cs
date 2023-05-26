@@ -73,9 +73,9 @@ export default function AdminLogin(){
                                     <button className="login-btn">Login</button>
                                 </div>
                             </form>
-                            <div className="flex justify-end my-4">
-                                <Link href="/provider/reset" className="font-semibold underline underline-offset-2">Forgot your password?</Link>
-                            </div>
+                            {/*<div className="flex justify-end my-4">*/}
+                            {/*    <Link href="/provider/reset" className="font-semibold underline underline-offset-2">Forgot your password?</Link>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>

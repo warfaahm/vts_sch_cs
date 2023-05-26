@@ -76,9 +76,9 @@ export default function PatientLogin(){
                                     <button className="login-btn" type="submit">Login</button>
                                 </div>
                             </form>
-                            <div className="flex justify-end my-4">
-                                <Link href="/user/reset" className="font-semibold underline underline-offset-2">Forgot your password?</Link>
-                            </div>
+                            {/*<div className="flex justify-end my-4">*/}
+                            {/*    <Link href="/user/reset" className="font-semibold underline underline-offset-2">Forgot your password?</Link>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
