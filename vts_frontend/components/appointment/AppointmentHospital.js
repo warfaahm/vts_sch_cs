@@ -160,8 +160,9 @@ export default function AppointmentHospital()
                                             <TableCell><span className={item.status.toLowerCase()}>{item.status}</span></TableCell>
                                             <TableCell>
                                                 <div>
-                                                    <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
+                                                    <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300 flex' onClick={() => handleEditClick(item.id)}>
                                                         <PencilSquareIcon className='w-5 h-5'/>
+                                                        <h1>Edit Status</h1>
                                                     </button>
                                                 </div>
                                             </TableCell>

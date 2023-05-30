@@ -40,7 +40,10 @@ export default function RecordPatientPop(props)
                     </div>
                 </div>
                 <div>
-
+                    <div>
+                        <span className='dialog1'>Batch/Lot No</span>
+                        <h1 className='dialog2'>{data.batch.lot_number}</h1>
+                    </div>
                 </div>
             </div>
         </>

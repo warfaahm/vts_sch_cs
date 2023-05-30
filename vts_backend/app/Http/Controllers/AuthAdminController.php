@@ -27,13 +27,13 @@ class AuthAdminController extends Controller
             'role' => $request->role,
         ]);
 
-        $password = $request->password;
-        $admin->notify(new NewAdminNotification($password));
-
         return $this->success([
             'user' => $admin,
             'message' => 'Admin added successfully!',
         ]);
+
+        $password = $request->password;
+        $admin->notify(new NewAdminNotification($password));
     }
 
     public function login(LoginUserRequest $request)

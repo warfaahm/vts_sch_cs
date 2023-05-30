@@ -157,12 +157,14 @@ export default function Vaccines()
                                             ))}</TableCell>
                                             <TableCell>{item.age_range}</TableCell>
                                             <TableCell>
-                                                <div>
-                                                    <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
+                                                <div className='flex'>
+                                                    <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300 flex' onClick={() => handleEditClick(item.id)}>
                                                         <PencilSquareIcon className='w-5 h-5'/>
+                                                        <h1>Edit</h1>
                                                     </button>
-                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-2' onClick={() => handleClick(item.id)}>
+                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-2 flex' onClick={() => handleClick(item.id)}>
                                                         <ArrowsPointingOutIcon className='w-5 h-5'/>
+                                                        <h1>Expand</h1>
                                                     </button>
                                                 </div>
                                             </TableCell>

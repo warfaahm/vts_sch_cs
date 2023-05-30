@@ -30,14 +30,15 @@ class AuthProviderController extends Controller
             'hospital_id' => $request->hospital_id,
             'role' => $request->role,
         ]);
-        $hospital = Hospital::find($request->hospital_id);
-        $password = $request->password;
-        $admin->notify(new NewAdminNotification2($password, $hospital->hospital_name));
 
         return $this->success([
             'user' => $admin,
             'message' => 'Admin added successfully!',
         ]);
+        
+        $hospital = Hospital::find($request->hospital_id);
+        $password = $request->password;
+        $admin->notify(new NewAdminNotification2($password, $hospital->hospital_name));
     }
 
     public function registerProvider(StoreProviderRequest1 $request)
@@ -52,14 +53,15 @@ class AuthProviderController extends Controller
             'role' => $request->role,
             'hospital_id' => Auth::user()->hospital_id,
         ]);
-        $hospital = Hospital::find(Auth::user()->hospital_id);
-        $password = $request->password;
-        $admin->notify(new NewAdminNotification2($password, $hospital->hospital_name));
 
         return $this->success([
             'user' => $provider,
             'message' => 'Provider - added successfully!',
         ]);
+
+        $hospital = Hospital::find(Auth::user()->hospital_id);
+        $password = $request->password;
+        $provider->notify(new NewAdminNotification2($password, $hospital->hospital_name));
     }
 
     public function indexProvider()

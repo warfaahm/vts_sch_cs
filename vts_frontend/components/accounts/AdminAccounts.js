@@ -144,8 +144,9 @@ export default function AdminAccounts()
                                             <TableCell>{item.role}</TableCell>
                                             <TableCell>
                                                 <div>
-                                                    <button className='text-red-800 rounded py-1.5 px-1 bg-red-100 hover:bg-red-300 ml-2' onClick={() => handleDeleteClick(item.id)}>
+                                                    <button className='text-red-800 rounded py-1.5 px-1 bg-red-100 hover:bg-red-300 ml-2 flex' onClick={() => handleDeleteClick(item.id)}>
                                                         <TrashIcon className='w-5 h-5'/>
+                                                        <h1>Delete</h1>
                                                     </button>
                                                 </div>
                                             </TableCell>

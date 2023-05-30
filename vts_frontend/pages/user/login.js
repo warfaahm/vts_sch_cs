@@ -70,7 +70,7 @@ export default function PatientLogin(){
                                     <TextField label="Password" type="password" id="password" name="password" error={error?.errors?.password !== undefined} helperText={error?.errors?.password} className="w-full" onChange={handlePasswordChange} required/>
                                 </div>
                                 <div>
-                                    {error != null  && <h1 className="error-msg">Error: {error.message}</h1>}
+                                    {error != null  && <h1 className="error-msg">Error: {error.data.message}</h1>}
                                 </div>
                                 <div>
                                     <button className="login-btn" type="submit">Login</button>

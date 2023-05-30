@@ -117,6 +117,7 @@ export default function RecordsDependent()
                                     <TableCell className="font-bold text-violet-900">Vaccine Name</TableCell>
                                     <TableCell className="font-bold text-violet-900">Date Administered</TableCell>
                                     <TableCell className="font-bold text-violet-900">Dose No</TableCell>
+                                    <TableCell className="font-bold text-violet-900">Batch/Lot No</TableCell>
                                     <TableCell className="font-bold text-violet-900">Next Dose Date</TableCell>
                                     <TableCell className="font-bold text-violet-900">Actions</TableCell>
                                 </TableRow>
@@ -134,11 +135,13 @@ export default function RecordsDependent()
                                             <TableCell>{item.vaccine.vaccine_name}</TableCell>
                                             <TableCell>{moment(item.date).format('DD/MM/YYYY')}</TableCell>
                                             <TableCell>{item.dose_no}</TableCell>
+                                            <TableCell>{item.batch.lot_number}</TableCell>
                                             <TableCell>{item.next_date}</TableCell>
                                             <TableCell>
                                                 <div>
-                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4' onClick={() => handleClick(item.dependent.id, item.id)} >
+                                                    <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4 flex' onClick={() => handleClick(item.dependent.id, item.id)} >
                                                         <ArrowsPointingOutIcon className='w-5 h-5'/>
+                                                        <h1>Expand</h1>
                                                     </button>
                                                 </div>
                                             </TableCell>

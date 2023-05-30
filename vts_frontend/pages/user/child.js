@@ -164,12 +164,14 @@ const PatientDependent = () =>{
                                                 <TableCell>{item.birth_cert_no}</TableCell>
                                                 <TableCell>{item.allergy}</TableCell>
                                                 <TableCell>
-                                                    <div>
-                                                        <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300' onClick={() => handleEditClick(item.id)}>
+                                                    <div className='flex'>
+                                                        <button className='text-violet-800 rounded py-1.5 px-1 bg-violet-100 hover:bg-violet-300 flex' onClick={() => handleEditClick(item.id)}>
                                                             <PencilSquareIcon className='w-5 h-5'/>
+                                                            <h1>Edit</h1>
                                                         </button>
-                                                        <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4' onClick={() => handleQR(item.last_name, item.birth_cert_no)}>
+                                                        <button className='text-green-800 rounded py-1.5 px-1 bg-green-100 hover:bg-green-300 ml-4 flex' onClick={() => handleQR(item.last_name, item.birth_cert_no)}>
                                                             <QrCodeIcon className='w-5 h-5'/>
+                                                            <h1>QR Code</h1>
                                                         </button>
                                                     </div>
                                                 </TableCell>

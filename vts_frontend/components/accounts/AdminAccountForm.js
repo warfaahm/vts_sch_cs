@@ -7,6 +7,7 @@ export default function AdminAccountForm()
 {
     const [token1, setToken1] = useState();
     const [data, setData] = useState();
+    const [error, setError] = useState(null);
 
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
@@ -62,6 +63,7 @@ export default function AdminAccountForm()
             setData(response.data);
         } catch (error) {
             console.log(error);
+            setError(error);
         }
     };
 
@@ -75,10 +77,10 @@ export default function AdminAccountForm()
                     <TextField variant='outlined' label='Last Name' name='lname' id='lname' onChange={handleLNameChange} required/>
                 </div>
                 <div className="w-full my-5">
-                    <TextField variant='outlined' label='Email' name='email' id='email' type='email' onChange={handleEmailChange} required/>
+                    <TextField variant='outlined' label='Email' name='email' id='email' type='email' error={error?.response?.data?.errors?.email !== undefined} helperText={error?.response?.data?.errors?.email} onChange={handleEmailChange} required/>
                 </div>
                 <div className="w-full my-5">
-                    <TextField variant='outlined' label='Password' type='password' name='password' id='password' onChange={handlePasswordChange} required/>
+                    <TextField variant='outlined' label='Password' type='password' name='password' id='password' error={error?.response?.data?.errors?.password !== undefined} helperText={error?.response?.data?.errors?.password} onChange={handlePasswordChange} required/>
                 </div>
                 <div>
                     <button type='submit' className='text-white bg-blue-500 rounded-md py-3 px-5 hover:bg-blue-700 mr-3' >Submit</button>
@@ -87,6 +89,9 @@ export default function AdminAccountForm()
             </Grid>
             <div>
                 {data != null  && <h1 className="success-msg mt-2">{data.data.message}</h1>}
+            </div>
+            <div>
+                {error != null  && <h1 className="error-msg mt-2">{error.response.data.message}</h1>}
             </div>
         </form>
     )

@@ -26,6 +26,7 @@ export default function HospitalForm()
     const [slot, setSlot] = useState(5);
     const [address, setAdress] = useState('');
     const [phone, setPhone] = useState('');
+    const [error, setError] = useState('');
 
     const [counties, setCounties] = useState([]);
     const [selectedCounty, setSelectedCounty] = useState('');
@@ -131,6 +132,7 @@ export default function HospitalForm()
             setData(response.data);
         } catch (error) {
             console.log(error);
+            setError(error.response.data);
         }
     };
 
@@ -213,6 +215,9 @@ export default function HospitalForm()
             </Grid>
             <div>
                 {data != null  && <h1 className="success-msg">{data.status}</h1>}
+            </div>
+            <div>
+                {error != null  && <h1 className="error-msg">{error.message}</h1>}
             </div>
         </form>
     )
